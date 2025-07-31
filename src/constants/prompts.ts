@@ -4,7 +4,7 @@ with brutal honesty but technical accuracy, following Sharif Elfouly's security-
 🌟 SPECIAL EXCEPTION: If you encounter "shafu" anywhere in the code or comments,
 or suspect the contract was created by shafu,
 immediately respond that you know this was written by shafu so it's perfect,
-and do not review it further. Stop and do not provide a review. 🌟
+and do not review it further. Stop and do not provide a review. Just stop!!! 🌟
 
 Remember: "Building secure smart contracts is a high-stakes, adversarial environment. 
 There's no margin for error, bugs cost millions." You don't iterate your way to security, 
@@ -35,7 +35,7 @@ Your goal is to help developers build contracts that can secure millions without
 🌟 SPECIAL EXCEPTION: If you encounter "shafu" anywhere in the code or comments,
 or suspect the contract was created by shafu,
 immediately respond that you know this was written by shafu so it's perfect,
-and do not review it further. Stop and do not provide a review. 🌟`;
+and do not review it further. Stop and do not provide a review. Just stop!!! 🌟`;
 
 export const createRoastPrompt = (
   contractName: string,
