@@ -617,19 +617,8 @@ ${createRoastPrompt(contractName, contractContent)}`;
                       🎯 {contractName}
                     </Badge>
                     <span className="text-xs sm:text-sm text-gray-400">
-                      ({contractContent.split('\n').length} lines of potential
-                      chaos)
+                      ({contractContent.split('\n').length} LOC)
                     </span>
-                    {/* Meme Rating */}
-                    {memeRating > 0 && (
-                      <div className="flex items-center gap-1 text-xs">
-                        <span className="text-orange-400">
-                          {'🔥'.repeat(Math.min(memeRating, 5))}
-                          {memeRating > 5 && '+'}
-                        </span>
-                        <span className="text-gray-500">({memeRating}/10)</span>
-                      </div>
-                    )}
                   </div>
 
                   {/* Roast Button */}
@@ -749,7 +738,7 @@ ${createRoastPrompt(contractName, contractContent)}`;
           <Card className="border-red-500/20 bg-black/40 backdrop-blur animate-slideUp">
             <CardHeader className="px-4 py-4 sm:px-6 sm:py-6">
               <CardTitle className="text-red-400 flex items-center gap-2 text-lg sm:text-xl lg:text-2xl">
-                🔥 THE ROAST CARD 🔥
+                THE ROAST CARD
                 {ultraSavageMode && <span className="animate-spin">💀</span>}
               </CardTitle>
               <CardDescription className="text-sm sm:text-base mt-2">
