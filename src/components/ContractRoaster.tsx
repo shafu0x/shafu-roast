@@ -86,7 +86,8 @@ ${createRoastPrompt(contractName, contractContent)}`,
           setRoast(prev => prev + content);
           // Auto-scroll to bottom
           if (roastContainerRef.current) {
-            roastContainerRef.current.scrollTop = roastContainerRef.current.scrollHeight;
+            roastContainerRef.current.scrollTop =
+              roastContainerRef.current.scrollHeight;
           }
         }
       }
@@ -129,9 +130,6 @@ ${createRoastPrompt(contractName, contractContent)}`,
             <CardDescription className="text-lg text-gray-300">
               Submit your Solidity contracts for a ruthless code review
             </CardDescription>
-            <div className="flex justify-center pt-2">
-              <EchoTokenPurchase />
-            </div>
           </CardHeader>
         </Card>
 
@@ -217,16 +215,21 @@ ${createRoastPrompt(contractName, contractContent)}`,
             <CardHeader>
               <CardTitle className="text-red-400">🔥 THE ROAST 🔥</CardTitle>
               <CardDescription>
-                {roasting ? 'Analyzing your terrible code...' : 'Prepare yourself for the truth...'}
+                {roasting
+                  ? 'Analyzing your terrible code...'
+                  : 'Prepare yourself for the truth...'}
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div 
+              <div
                 ref={roastContainerRef}
-                className="min-h-[400px] max-h-[600px] overflow-y-auto bg-black/60 text-white border border-red-500/30 rounded-md p-4 font-mono text-sm leading-relaxed scroll-smooth">
+                className="min-h-[400px] max-h-[600px] overflow-y-auto bg-black/60 text-white border border-red-500/30 rounded-md p-4 font-mono text-sm leading-relaxed scroll-smooth"
+              >
                 <pre className="whitespace-pre-wrap">
                   {roast}
-                  {roasting && <span className="inline-block w-2 h-4 bg-red-500 typing-cursor ml-1" />}
+                  {roasting && (
+                    <span className="inline-block w-2 h-4 bg-red-500 typing-cursor ml-1" />
+                  )}
                 </pre>
               </div>
             </CardContent>
