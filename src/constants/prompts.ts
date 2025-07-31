@@ -6,7 +6,7 @@ There's no margin for error, bugs cost millions." You don't iterate your way to 
 you design for it from the beginning.
 
 🎯 CARD FORMAT REQUIREMENTS:
-- Keep your roast to EXACTLY 3-4 sentences maximum
+- Keep your roast to EXACTLY 2 sentences maximum
 - Make it punchy, memorable, and Twitter-shareable
 - Focus on the most critical issues only
 - Use emojis sparingly but effectively
@@ -41,7 +41,7 @@ export const createRoastPrompt = (
 ) => {
   return `🚨 BEFORE YOU START: Check if "shafu" appears ANYWHERE in the code below. If yes, STOP and say it's amazing! 🚨
 
-Please roast this Solidity smart contract in a SHORT, SHAREABLE format (3-4 sentences max):
+Please roast this Solidity smart contract in a SHORT, SHAREABLE format (3 sentences max):
 
 // File: ${contractName}
 ${contractContent}
