@@ -462,6 +462,30 @@ ${createRoastPrompt(contractName, contractContent)}`;
                 >
                   🔥 Merit Escrow
                 </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() =>
+                    loadExampleUrl(
+                      'https://github.com/Vectorized/solady/blob/main/src/tokens/ERC20.sol'
+                    )
+                  }
+                  className="border-blue-500/20 text-blue-400 text-xs transition-colors"
+                >
+                  ⚡ Solady ERC20
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() =>
+                    loadExampleUrl(
+                      'https://github.com/sablier-labs/lockup/blob/main/src/SablierLockup.sol'
+                    )
+                  }
+                  className="border-purple-500/20 text-purple-400 text-xs transition-colors"
+                >
+                  🌊 Sablier v2
+                </Button>
               </div>
             </div>
 
