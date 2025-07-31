@@ -159,6 +159,11 @@ export function ContractRoaster() {
     return SAVAGE_ERRORS.generic;
   };
 
+  const loadExampleUrl = (url: string) => {
+    setGithubUrl(url);
+    setError('');
+  };
+
   const fetchContract = async () => {
     setFetchingContract(true);
     setError('');
@@ -437,6 +442,27 @@ ${createRoastPrompt(contractName, contractContent)}`;
               >
                 {fetchingContract ? '🎯 Locking...' : '🔫 Lock & Load'}
               </Button>
+            </div>
+
+            {/* Example Contracts */}
+            <div className="border-t border-gray-700 pt-4">
+              <div className="text-xs sm:text-sm text-gray-400 mb-2">
+                🎯 Try an example:
+              </div>
+              <div className="flex flex-wrap gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() =>
+                    loadExampleUrl(
+                      'https://github.com/Merit-Systems/contracts/blob/master/src/Escrow.sol'
+                    )
+                  }
+                  className="border-orange-500/20 text-orange-400 hover:bg-orange-500/10 text-xs"
+                >
+                  🔥 Merit Escrow by shafu
+                </Button>
+              </div>
             </div>
 
             {/* Loading Messages */}
