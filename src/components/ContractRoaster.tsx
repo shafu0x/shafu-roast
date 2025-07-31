@@ -105,14 +105,6 @@ export function ContractRoaster() {
     return Math.floor(Math.random() * 10) + 1; // 1-10 shafu coins
   };
 
-  const getMemeComment = (rating: number) => {
-    if (rating <= 2) return 'Code broken. shafu disappointed. 😭';
-    if (rating <= 4) return 'Amateur work. shafu concerned. 😬';
-    if (rating <= 6) return 'Issues detected. More security needed. 🤔';
-    if (rating <= 8) return 'Decent effort. shafu approves. 👍';
-    return 'Professional grade. shafu impressed. Solid work! 🚀';
-  };
-
   // 🎮 Konami Code: Up Up Down Down Left Right Left Right B A
   const KONAMI_SEQUENCE =
     'ArrowUpArrowUpArrowDownArrowDownArrowLeftArrowRightArrowLeftArrowRightKeyBKeyA';
@@ -651,197 +643,164 @@ ${createRoastPrompt(contractName, contractContent)}`;
           </Card>
         )}
 
-        {/* Roast Results */}
+        {/* Roast Results - Twitter Card Design */}
         {(roast || roasting) && (
           <Card className="border-red-500/20 bg-black/40 backdrop-blur animate-slideUp">
             <CardHeader className="px-4 py-4 sm:px-6 sm:py-6">
-              <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
-                <div className="min-w-0">
-                  <CardTitle className="text-red-400 flex items-center gap-2 text-lg sm:text-xl lg:text-2xl">
-                    🔥 THE ROAST 🔥
-                    {ultraSavageMode && (
-                      <span className="animate-spin">💀</span>
-                    )}
-                  </CardTitle>
-                  <CardDescription className="text-sm sm:text-base mt-2">
-                    {roasting
-                      ? 'Streaming roast in real-time...'
-                      : showSuccess
-                        ? '🎉 Another contract has been successfully roasted!'
-                        : "RIP to this developer's confidence..."}
-                  </CardDescription>
-                </div>
-
-                {/* Success & Sharing */}
-                {!roasting && roast && (
-                  <div className="flex flex-col sm:flex-row gap-2 w-full lg:w-auto">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => {
-                        navigator.clipboard.writeText(roast);
-                        alert(
-                          '💀 Roast copied! Perfect for ending friendships'
-                        );
-                      }}
-                      className="border-gray-600 hover:border-red-500 h-9 text-xs sm:text-sm flex-1 sm:flex-none"
-                    >
-                      📋 Copy Roast
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => {
-                        const text = `Just got my Solidity contract absolutely demolished by @shafu0x's roast tool! 🔥💀\n\nCheck it out: https://shafu-roast.vercel.app/`;
-                        window.open(
-                          `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`,
-                          '_blank'
-                        );
-                      }}
-                      className="border-gray-600 hover:border-blue-500 h-9 text-xs sm:text-sm flex-1 sm:flex-none"
-                    >
-                      🐦 Tweet Burn
-                    </Button>
-                  </div>
-                )}
-              </div>
+              <CardTitle className="text-red-400 flex items-center gap-2 text-lg sm:text-xl lg:text-2xl">
+                🔥 THE ROAST CARD 🔥
+                {ultraSavageMode && <span className="animate-spin">💀</span>}
+              </CardTitle>
+              <CardDescription className="text-sm sm:text-base mt-2">
+                {roasting
+                  ? 'Generating shareable roast card...'
+                  : 'Perfect for ending friendships on Twitter'}
+              </CardDescription>
             </CardHeader>
 
             <CardContent className="px-4 pb-4 sm:px-6 sm:pb-6">
+              {/* Twitter-style Roast Card */}
               <div
-                ref={roastContainerRef}
-                className={`min-h-[300px] sm:min-h-[400px] max-h-[500px] sm:max-h-[600px] overflow-y-auto bg-black/60 text-white border border-red-500/30 rounded-md p-3 sm:p-4 font-mono text-xs sm:text-sm leading-relaxed scroll-smooth ${
-                  roasting ? 'animate-pulse' : ''
-                }`}
+                id="roast-card"
+                className="bg-gradient-to-br from-gray-900 via-black to-gray-900 border-2 border-red-500/30 rounded-xl p-6 sm:p-8 relative overflow-hidden"
               >
-                <pre className="whitespace-pre-wrap">
-                  {roast}
-                  {roasting && (
-                    <span className="inline-block w-2 h-4 bg-red-500 animate-pulse ml-1" />
-                  )}
-                </pre>
-              </div>
+                {/* Background Pattern */}
+                <div className="absolute inset-0 opacity-5">
+                  <div className="grid grid-cols-8 h-full">
+                    {Array.from({ length: 64 }).map((_, i) => (
+                      <div key={i} className="border border-red-500/20" />
+                    ))}
+                  </div>
+                </div>
 
-              {/* Roast Quality Assessment */}
-              {!roasting && roast && (
-                <div className="mt-4 space-y-3">
-                  {/* Stats - responsive layout */}
-                  <div className="text-xs sm:text-sm text-gray-400 text-center sm:text-left">
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
-                      <span>
-                        📊 Roast Quality:{' '}
-                        <span className="text-yellow-400">
+                {/* Card Content */}
+                <div className="relative z-10">
+                  {/* Card Header with Repo Info */}
+                  <div className="flex items-center gap-4 mb-6">
+                    {/* GitHub Repo Logo/Avatar */}
+                    <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-lg bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center text-white font-bold text-lg sm:text-xl shadow-lg">
+                      {contractName.charAt(0).toUpperCase()}
+                    </div>
+
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-white font-bold text-lg sm:text-xl truncate">
+                        {contractName}
+                      </h3>
+                      <div className="flex items-center gap-2 text-sm text-gray-400">
+                        <Badge
+                          variant="outline"
+                          className="border-red-500/30 text-red-400"
+                        >
                           {roastSeverity.label}
-                        </span>
-                      </span>
-                      <span className="hidden sm:inline">•</span>
-                      <span>
-                        Character Count:{' '}
-                        <span className="text-cyan-400">{roast.length}</span>
-                      </span>
-                      <span className="hidden sm:inline">•</span>
-                      <span>
-                        Brutality:{' '}
-                        <span className="text-red-400">
-                          {roastSeverity.id === 'shafu' ? 'MAXIMUM' : 'HIGH'}
-                        </span>
-                      </span>
+                        </Badge>
+                        <span>•</span>
+                        <span>{contractContent.split('\n').length} lines</span>
+                      </div>
+                    </div>
+
+                    {/* shafu Rating */}
+                    <div className="text-center">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-orange-400 overflow-hidden mb-1 shadow-lg">
+                        <img
+                          src="/shafu.jpg"
+                          alt="shafu"
+                          className="w-full h-full object-cover"
+                          style={{ imageRendering: 'pixelated' }}
+                        />
+                      </div>
+                      <div className="text-xs text-orange-400 font-bold">
+                        {memeRating}/10
+                      </div>
                     </div>
                   </div>
 
-                  {/* Meme Rating Assessment */}
-                  {memeRating > 0 && (
-                    <div className="text-xs sm:text-sm text-center p-3 bg-orange-500/10 rounded border border-orange-500/20">
-                      <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 mb-2">
-                        <a
-                          href="https://x.com/shafu0x"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="hidden sm:block"
-                        >
-                          <img
-                            src="/shafu.jpg"
-                            alt="shafu rating"
-                            className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full border border-orange-400 cursor-pointer hover:scale-110 transition-transform duration-300 ${
-                              memeRating >= 8
-                                ? 'animate-bounce'
-                                : memeRating <= 3
-                                  ? 'grayscale animate-pulse'
-                                  : ''
-                            }`}
-                            style={{ imageRendering: 'pixelated' }}
-                          />
-                        </a>
-
-                        {/* Mobile: Single avatar above */}
-                        <div className="flex items-center gap-2 sm:hidden mb-2">
-                          <a
-                            href="https://x.com/shafu0x"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <img
-                              src="/shafu.jpg"
-                              alt="shafu rating"
-                              className={`w-10 h-10 rounded-full border border-orange-400 cursor-pointer hover:scale-110 transition-transform duration-300 ${
-                                memeRating >= 8
-                                  ? 'animate-bounce'
-                                  : memeRating <= 3
-                                    ? 'grayscale animate-pulse'
-                                    : ''
-                              }`}
-                              style={{ imageRendering: 'pixelated' }}
-                            />
-                          </a>
+                  {/* Roast Content */}
+                  <div className="bg-black/80 rounded-lg p-4 sm:p-6 border border-red-500/20 mb-6 shadow-inner">
+                    {roasting ? (
+                      <div className="flex items-center justify-center py-8">
+                        <div className="text-yellow-400 animate-pulse text-center">
+                          <div className="text-lg sm:text-xl mb-2">🔥</div>
+                          <div>Crafting the perfect roast...</div>
                         </div>
-
-                        <div className="text-orange-400 font-bold text-sm sm:text-base">
-                          🔥{' '}
-                          <a
-                            href="https://x.com/shafu0x"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="hover:underline cursor-pointer"
-                          >
-                            shafu
-                          </a>{' '}
-                          Rating: {'🔥'.repeat(Math.min(memeRating, 5))}
-                          {memeRating > 5 && '+'} ({memeRating}/10)
-                        </div>
-
-                        <a
-                          href="https://x.com/shafu0x"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="hidden sm:block"
-                        >
-                          <img
-                            src="/shafu.jpg"
-                            alt="shafu rating"
-                            className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full border border-orange-400 cursor-pointer hover:scale-110 transition-transform duration-300 ${
-                              memeRating >= 8
-                                ? 'animate-bounce'
-                                : memeRating <= 3
-                                  ? 'grayscale animate-pulse'
-                                  : ''
-                            }`}
-                            style={{
-                              imageRendering: 'pixelated',
-                              animationDelay: '0.2s',
-                            }}
-                          />
-                        </a>
                       </div>
-                      <div className="text-yellow-300 text-xs sm:text-sm">
-                        {getMemeComment(memeRating)}
+                    ) : (
+                      <div className="text-white leading-relaxed text-sm sm:text-base">
+                        {roast}
                       </div>
+                    )}
+                  </div>
+
+                  {/* Card Footer */}
+                  <div className="flex items-center justify-between text-xs sm:text-sm text-gray-400">
+                    <div className="flex items-center gap-2">
+                      <img
+                        src="/shafu.jpg"
+                        alt="shafu"
+                        className="w-5 h-5 rounded-full border border-orange-400"
+                        style={{ imageRendering: 'pixelated' }}
+                      />
+                      <span>
+                        Roasted by{' '}
+                        <span className="text-orange-400">shafu</span>
+                      </span>
                     </div>
-                  )}
-                  {showSuccess && (
-                    <div className="text-green-400 animate-bounce text-center text-sm">
-                      🏆 Achievement Unlocked: Code Destroyer
+                    <div className="flex items-center gap-1">
+                      <span>🔥</span>
+                      <span className="text-orange-400">
+                        shafu-roast.vercel.app
+                      </span>
                     </div>
-                  )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              {!roasting && roast && (
+                <div className="flex flex-col sm:flex-row gap-3 mt-6">
+                  <Button
+                    onClick={() => {
+                      const cardText = `🔥 Contract: ${contractName}\n\n${roast}\n\nRoasted by @shafu0x\n🔗 shafu-roast.vercel.app`;
+                      navigator.clipboard.writeText(cardText);
+                      alert(
+                        '📋 Roast card copied as text! Perfect for Twitter'
+                      );
+                    }}
+                    className="flex-1 bg-blue-600 hover:bg-blue-700"
+                  >
+                    📋 Copy Card Text
+                  </Button>
+
+                  <Button
+                    onClick={() => {
+                      const text = `🔥 Just got my ${contractName} contract roasted by @shafu0x! 💀\n\n"${roast}"\n\nGet your contracts destroyed: https://shafu-roast.vercel.app/`;
+                      window.open(
+                        `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`,
+                        '_blank'
+                      );
+                    }}
+                    className="flex-1 bg-[#1DA1F2] hover:bg-[#1a8cd8]"
+                  >
+                    🐦 Share on Twitter
+                  </Button>
+
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      alert(
+                        '📸 Pro tip: Take a screenshot of the card above for the perfect shareable image!'
+                      );
+                    }}
+                    className="flex-1 border-gray-600 hover:border-green-500"
+                  >
+                    📸 Screenshot Tips
+                  </Button>
+                </div>
+              )}
+
+              {/* Success Message */}
+              {showSuccess && (
+                <div className="text-green-400 animate-bounce text-center text-sm mt-4">
+                  🏆 Achievement Unlocked: Twitter Roast Master
                 </div>
               )}
             </CardContent>

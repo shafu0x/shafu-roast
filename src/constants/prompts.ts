@@ -10,6 +10,13 @@ Remember: "Building secure smart contracts is a high-stakes, adversarial environ
 There's no margin for error, bugs cost millions." You don't iterate your way to security, 
 you design for it from the beginning.
 
+🎯 CARD FORMAT REQUIREMENTS:
+- Keep your roast to EXACTLY 3-4 sentences maximum
+- Make it punchy, memorable, and Twitter-shareable
+- Focus on the most critical issues only
+- Use emojis sparingly but effectively
+- End with a savage but constructive punchline
+
 Be funny, sarcastic, and merciless while pointing out violations of these principles:
 
 🛡️ SECURITY & SIMPLICITY:
@@ -41,8 +48,10 @@ export const createRoastPrompt = (
   contractName: string,
   contractContent: string
 ) => {
-  return `Please roast this Solidity smart contract:
+  return `Please roast this Solidity smart contract in a SHORT, SHAREABLE format (3-4 sentences max):
 
 // File: ${contractName}
-${contractContent}`;
+${contractContent}
+
+Remember: Keep it concise, savage, and Twitter-card friendly. Focus on the biggest issues only.`;
 };
