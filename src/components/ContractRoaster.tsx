@@ -71,7 +71,7 @@ const ROAST_SEVERITIES = [
   },
   {
     id: 'shafu',
-    label: '🌋 shafu Mode: No Survivors',
+    label: '🌋 shafu Mode',
     prompt: 'Channel the spirit of shafu - ultimate destruction',
   },
 ];
@@ -106,15 +106,15 @@ export function ContractRoaster() {
 
   // 🎲 Generate random meme rating when contract is loaded
   const generateMemeRating = () => {
-    return Math.floor(Math.random() * 10) + 1; // 1-10 doge coins
+    return Math.floor(Math.random() * 10) + 1; // 1-10 shafu coins
   };
 
   const getMemeComment = (rating: number) => {
-    if (rating <= 2) return 'Much broken. Very sad. 😭';
-    if (rating <= 4) return 'Such amateur. Wow concern. 😬';
-    if (rating <= 6) return 'Many issues. Much work needed. 🤔';
-    if (rating <= 8) return 'Good effort. Some wow. 👍';
-    return 'Much professional. Very impressed. Such code! 🚀';
+    if (rating <= 2) return 'Code broken. shafu disappointed. 😭';
+    if (rating <= 4) return 'Amateur work. shafu concerned. 😬';
+    if (rating <= 6) return 'Issues detected. More security needed. 🤔';
+    if (rating <= 8) return 'Decent effort. shafu approves. 👍';
+    return 'Professional grade. shafu impressed. Solid work! 🚀';
   };
 
   // 🎮 Konami Code: Up Up Down Down Left Right Left Right B A
@@ -430,8 +430,8 @@ ${createRoastPrompt(contractName, contractContent)}`;
                   {/* Meme Rating */}
                   {memeRating > 0 && (
                     <div className="flex items-center gap-1 text-xs">
-                      <span className="text-yellow-400">
-                        {'🐕'.repeat(memeRating)}
+                      <span className="text-orange-400">
+                        {'🔥'.repeat(memeRating)}
                       </span>
                       <span className="text-gray-500">({memeRating}/10)</span>
                     </div>
@@ -465,15 +465,6 @@ ${createRoastPrompt(contractName, contractContent)}`;
                   )}
                 </Button>
               </CardTitle>
-
-              {/* Roasting Messages */}
-              {roasting && currentRoastingMessage && (
-                <div className="text-center mt-2">
-                  <div className="text-red-400 animate-pulse font-bold">
-                    {currentRoastingMessage}
-                  </div>
-                </div>
-              )}
             </CardHeader>
             <CardContent>
               <Textarea
@@ -481,6 +472,20 @@ ${createRoastPrompt(contractName, contractContent)}`;
                 readOnly
                 className="min-h-[200px] max-h-[300px] bg-black/60 text-white border-green-500/30 font-mono text-xs"
               />
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Roasting Loading Messages */}
+        {roasting && currentRoastingMessage && (
+          <Card className="border-yellow-500/20 bg-yellow-500/5 backdrop-blur animate-pulse">
+            <CardContent className="text-center py-4">
+              <div className="text-yellow-400 font-bold text-lg">
+                {currentRoastingMessage}
+              </div>
+              <div className="text-yellow-300 text-sm mt-1">
+                Please wait while we absolutely demolish your code...
+              </div>
             </CardContent>
           </Card>
         )}
@@ -499,7 +504,7 @@ ${createRoastPrompt(contractName, contractContent)}`;
                   </CardTitle>
                   <CardDescription>
                     {roasting
-                      ? 'AI is having a mental breakdown analyzing this...'
+                      ? 'Streaming roast in real-time...'
                       : showSuccess
                         ? '🎉 Another contract has been successfully roasted!'
                         : "RIP to this developer's confidence..."}
@@ -568,9 +573,9 @@ ${createRoastPrompt(contractName, contractContent)}`;
                   </div>
                   {/* Meme Rating Assessment */}
                   {memeRating > 0 && (
-                    <div className="text-sm text-center p-2 bg-yellow-500/10 rounded border border-yellow-500/20">
-                      <div className="text-yellow-400 font-bold">
-                        🐕 Doge Rating: {'🐕'.repeat(memeRating)} ({memeRating}
+                    <div className="text-sm text-center p-2 bg-orange-500/10 rounded border border-orange-500/20">
+                      <div className="text-orange-400 font-bold">
+                        🔥 shafu Rating: {'🔥'.repeat(memeRating)} ({memeRating}
                         /10)
                       </div>
                       <div className="text-yellow-300 text-xs mt-1">
