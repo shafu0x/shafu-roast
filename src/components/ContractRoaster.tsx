@@ -308,38 +308,46 @@ ${createRoastPrompt(contractName, contractContent)}`;
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 p-4">
-      <div className="max-w-4xl mx-auto space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 p-3 sm:p-4 lg:p-6">
+      <div className="max-w-4xl mx-auto space-y-4 sm:space-y-6">
         {/* Header */}
         <Card
           className={`border-orange-500/20 bg-black/40 backdrop-blur ${ultraSavageMode ? 'animate-pulse border-red-600' : ''}`}
         >
-          <CardHeader className="text-center relative">
-            {/* shafu Avatar */}
-            <div className="absolute top-4 right-4">
+          <CardHeader className="text-center relative px-4 py-6 sm:px-6 sm:py-8">
+            {/* shafu Avatar - responsive positioning */}
+            <div className="absolute top-3 right-3 sm:top-4 sm:right-4">
               <img
                 src="/shafu.jpg"
                 alt="shafu"
-                className={`w-16 h-16 rounded-full border-2 border-orange-400 pixelated transition-all duration-300 ${
+                className={`w-12 h-12 sm:w-16 sm:h-16 rounded-full border-2 border-orange-400 pixelated transition-all duration-300 ${
                   shafuJudging ? 'animate-bounce scale-110 border-red-500' : ''
                 } ${ultraSavageMode ? 'animate-spin border-red-600' : ''}`}
                 style={{ imageRendering: 'pixelated' }}
               />
               {shafuJudging && (
-                <div className="absolute -top-8 -left-4 bg-black/80 text-orange-400 text-xs px-2 py-1 rounded animate-pulse">
+                <div className="absolute -top-6 -left-3 sm:-top-8 sm:-left-4 bg-black/80 text-orange-400 text-xs px-2 py-1 rounded animate-pulse">
                   Judging...
                 </div>
               )}
             </div>
 
-            <CardTitle className="text-4xl font-bold text-cyan-400">
+            {/* Title - responsive text size */}
+            <CardTitle className="text-2xl sm:text-3xl lg:text-4xl font-bold text-cyan-400 pr-16 sm:pr-20">
               🔥 shafu Roast 🔥 {ultraSavageMode && '💀'}
             </CardTitle>
-            <CardDescription className="text-lg text-gray-200">
-              Submit your Solidity contracts for a ruthless code review
+
+            {/* Description - responsive and better mobile layout */}
+            <CardDescription className="text-sm sm:text-base lg:text-lg text-gray-200 mt-2 px-2 sm:px-0">
+              <div className="mb-2">
+                Submit your Solidity contracts for a ruthless code review
+              </div>
               {ultraSavageMode && (
-                <div className="text-red-400 font-bold mt-2 animate-bounce">
-                  🌋 ULTRA SAVAGE MODE ACTIVATED 🌋
+                <div className="text-red-400 font-bold text-xs sm:text-sm lg:text-base animate-bounce bg-red-500/10 rounded-lg px-3 py-2 mx-auto max-w-xs sm:max-w-none">
+                  🌋 ULTRA SAVAGE MODE 🌋
+                  <div className="text-xs mt-1 text-red-300">
+                    Maximum destruction enabled
+                  </div>
                 </div>
               )}
             </CardDescription>
@@ -348,16 +356,16 @@ ${createRoastPrompt(contractName, contractContent)}`;
 
         {/* Roast Severity Selector */}
         <Card className="border-purple-500/20 bg-black/40 backdrop-blur">
-          <CardHeader>
-            <CardTitle className="text-cyan-400">
+          <CardHeader className="px-4 py-4 sm:px-6 sm:py-6">
+            <CardTitle className="text-cyan-400 text-lg sm:text-xl lg:text-2xl">
               🎯 Destruction Level
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-sm sm:text-base text-gray-200 mt-1">
               Choose your preferred level of digital violence
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-2">
+          <CardContent className="px-4 pb-4 sm:px-6 sm:pb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2 sm:gap-3">
               {ROAST_SEVERITIES.map(severity => (
                 <Button
                   key={severity.id}
@@ -365,35 +373,37 @@ ${createRoastPrompt(contractName, contractContent)}`;
                     roastSeverity.id === severity.id ? 'default' : 'outline'
                   }
                   onClick={() => setRoastSeverity(severity)}
-                  className={`text-xs p-2 h-auto ${
+                  className={`text-xs sm:text-sm p-3 sm:p-2 h-auto min-h-[44px] sm:min-h-auto ${
                     roastSeverity.id === severity.id
                       ? 'bg-red-600 hover:bg-red-700 text-white'
                       : 'border-gray-600 hover:border-red-500'
                   } ${severity.id === 'shafu' ? 'border-orange-500 text-orange-400' : ''}`}
                   disabled={severity.id === 'shafu' && !ultraSavageMode}
                 >
-                  {severity.id === 'shafu' ? (
-                    <>
-                      🌋{' '}
-                      <a
-                        href="https://x.com/shafu0x"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:underline cursor-pointer"
-                        onClick={e => e.stopPropagation()}
-                      >
-                        shafu
-                      </a>{' '}
-                      Mode
-                    </>
-                  ) : (
-                    severity.label
-                  )}
+                  <span className="text-center leading-tight">
+                    {severity.id === 'shafu' ? (
+                      <>
+                        🌋{' '}
+                        <a
+                          href="https://x.com/shafu0x"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover:underline cursor-pointer"
+                          onClick={e => e.stopPropagation()}
+                        >
+                          shafu
+                        </a>{' '}
+                        Mode
+                      </>
+                    ) : (
+                      severity.label
+                    )}
+                  </span>
                 </Button>
               ))}
             </div>
             {roastSeverity.id === 'shafu' && (
-              <div className="text-orange-400 text-sm mt-2 text-center">
+              <div className="text-orange-400 text-xs sm:text-sm mt-3 text-center bg-orange-500/10 rounded-lg px-3 py-2">
                 🌋 Maximum destruction mode - No contract survives this
               </div>
             )}
@@ -402,22 +412,22 @@ ${createRoastPrompt(contractName, contractContent)}`;
 
         {/* Input Section */}
         <Card className="border-orange-500/20 bg-black/40 backdrop-blur">
-          <CardHeader>
-            <CardTitle className="text-cyan-400">
+          <CardHeader className="px-4 py-4 sm:px-6 sm:py-6">
+            <CardTitle className="text-cyan-400 text-lg sm:text-xl lg:text-2xl">
               🎯 Target Acquisition
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-sm sm:text-base text-gray-200 mt-1">
               Drop a GitHub link and watch your contract get absolutely
               demolished
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="flex gap-2">
+          <CardContent className="space-y-4 px-4 pb-4 sm:px-6 sm:pb-6">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-2">
               <Input
-                placeholder="https://github.com/user/repo/blob/main/contracts/YourDoomedContract.sol"
+                placeholder="https://github.com/user/repo/blob/main/contracts/Contract.sol"
                 value={githubUrl}
                 onChange={e => setGithubUrl(e.target.value)}
-                className="flex-1 placeholder:text-gray-500"
+                className="flex-1 placeholder:text-gray-500 text-sm sm:text-base h-11 sm:h-10"
                 onKeyPress={e =>
                   e.key === 'Enter' &&
                   !fetchingContract &&
@@ -428,16 +438,16 @@ ${createRoastPrompt(contractName, contractContent)}`;
               <Button
                 onClick={fetchContract}
                 disabled={fetchingContract || !githubUrl}
-                className="bg-orange-600 hover:bg-orange-700 min-w-[140px]"
+                className="bg-orange-600 hover:bg-orange-700 min-w-[140px] sm:min-w-[140px] h-11 sm:h-10 text-sm sm:text-base whitespace-nowrap"
               >
-                {fetchingContract ? '🎯 Locking Target...' : '🔫 Lock and Load'}
+                {fetchingContract ? '🎯 Locking...' : '🔫 Lock & Load'}
               </Button>
             </div>
 
             {/* Loading Messages */}
             {fetchingContract && currentLoadingMessage && (
-              <div className="text-center">
-                <div className="text-yellow-400 animate-pulse">
+              <div className="text-center px-2">
+                <div className="text-yellow-400 animate-pulse text-sm sm:text-base">
                   {currentLoadingMessage}
                 </div>
               </div>
@@ -445,7 +455,7 @@ ${createRoastPrompt(contractName, contractContent)}`;
 
             {error && (
               <Alert className="border-red-500/50 bg-red-500/10 animate-shake">
-                <AlertDescription className="text-red-400 font-bold">
+                <AlertDescription className="text-red-400 font-bold text-sm sm:text-base">
                   {error}
                 </AlertDescription>
               </Alert>
@@ -456,63 +466,70 @@ ${createRoastPrompt(contractName, contractContent)}`;
         {/* Contract Found */}
         {contractContent && (
           <Card className="border-green-500/20 bg-black/40 backdrop-blur animate-fadeIn">
-            <CardHeader>
-              <CardTitle className="text-cyan-400 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Badge
-                    variant="secondary"
-                    className="bg-green-500/20 text-green-400"
-                  >
-                    🎯 {contractName}
-                  </Badge>
-                  <span className="text-sm text-gray-400">
-                    ({contractContent.split('\n').length} lines of potential
-                    chaos)
-                  </span>
-                  {/* Meme Rating */}
-                  {memeRating > 0 && (
-                    <div className="flex items-center gap-1 text-xs">
-                      <span className="text-orange-400">
-                        {'🔥'.repeat(memeRating)}
-                      </span>
-                      <span className="text-gray-500">({memeRating}/10)</span>
-                    </div>
-                  )}
-                </div>
-                <Button
-                  onClick={generateRoast}
-                  disabled={roasting}
-                  className={`min-w-[200px] ${
-                    roastSeverity.id === 'shafu'
-                      ? 'bg-orange-600 hover:bg-orange-700 animate-pulse'
-                      : 'bg-red-600 hover:bg-red-700'
-                  }`}
-                >
-                  {roasting ? (
-                    <span className="animate-bounce">
-                      💀{' '}
-                      {roastSeverity.id === 'shafu'
-                        ? 'OBLITERATING'
-                        : 'DESTROYING'}{' '}
-                      💀
+            <CardHeader className="px-4 py-4 sm:px-6 sm:py-6">
+              <CardTitle className="text-cyan-400 text-lg sm:text-xl lg:text-2xl">
+                {/* Mobile: Stack vertically, Desktop: Side by side */}
+                <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 lg:gap-4">
+                  {/* Contract Info */}
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 min-w-0">
+                    <Badge
+                      variant="secondary"
+                      className="bg-green-500/20 text-green-400 text-xs sm:text-sm whitespace-nowrap"
+                    >
+                      🎯 {contractName}
+                    </Badge>
+                    <span className="text-xs sm:text-sm text-gray-400">
+                      ({contractContent.split('\n').length} lines of potential
+                      chaos)
                     </span>
-                  ) : (
-                    <>
-                      {roastSeverity.id === 'gentle' && '🥺 Please Review'}
-                      {roastSeverity.id === 'medium' && '😤 Roast This'}
-                      {roastSeverity.id === 'spicy' && '🔥 DESTROY IT'}
-                      {roastSeverity.id === 'nuclear' && '💀 ANNIHILATE'}
-                      {roastSeverity.id === 'shafu' && '🌋 OBLITERATE'}
-                    </>
-                  )}
-                </Button>
+                    {/* Meme Rating */}
+                    {memeRating > 0 && (
+                      <div className="flex items-center gap-1 text-xs">
+                        <span className="text-orange-400">
+                          {'🔥'.repeat(Math.min(memeRating, 5))}
+                          {memeRating > 5 && '+'}
+                        </span>
+                        <span className="text-gray-500">({memeRating}/10)</span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Roast Button */}
+                  <Button
+                    onClick={generateRoast}
+                    disabled={roasting}
+                    className={`w-full sm:w-auto min-w-0 sm:min-w-[180px] lg:min-w-[200px] h-11 sm:h-10 text-sm sm:text-base ${
+                      roastSeverity.id === 'shafu'
+                        ? 'bg-orange-600 hover:bg-orange-700 animate-pulse'
+                        : 'bg-red-600 hover:bg-red-700'
+                    }`}
+                  >
+                    {roasting ? (
+                      <span className="animate-bounce text-xs sm:text-sm">
+                        💀{' '}
+                        {roastSeverity.id === 'shafu'
+                          ? 'OBLITERATING'
+                          : 'DESTROYING'}{' '}
+                        💀
+                      </span>
+                    ) : (
+                      <span className="text-xs sm:text-sm">
+                        {roastSeverity.id === 'gentle' && '🥺 Please Review'}
+                        {roastSeverity.id === 'medium' && '😤 Roast This'}
+                        {roastSeverity.id === 'spicy' && '🔥 DESTROY IT'}
+                        {roastSeverity.id === 'nuclear' && '💀 ANNIHILATE'}
+                        {roastSeverity.id === 'shafu' && '🌋 OBLITERATE'}
+                      </span>
+                    )}
+                  </Button>
+                </div>
               </CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="px-4 pb-4 sm:px-6 sm:pb-6">
               <Textarea
                 value={contractContent}
                 readOnly
-                className="min-h-[200px] max-h-[300px] bg-black/60 text-white border-green-500/30 font-mono text-xs"
+                className="min-h-[150px] sm:min-h-[200px] max-h-[250px] sm:max-h-[300px] bg-black/60 text-white border-green-500/30 font-mono text-xs sm:text-sm"
               />
             </CardContent>
           </Card>
@@ -521,33 +538,35 @@ ${createRoastPrompt(contractName, contractContent)}`;
         {/* Roasting Loading Messages */}
         {roasting && currentRoastingMessage && (
           <Card className="border-yellow-500/20 bg-yellow-500/5 backdrop-blur animate-pulse">
-            <CardContent className="text-center py-4 relative">
+            <CardContent className="text-center py-4 px-4 sm:py-6 sm:px-6 relative">
               {/* Judging shafu */}
-              <div className="flex items-center justify-center gap-4 mb-2">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-3 sm:mb-2">
                 <a
                   href="https://x.com/shafu0x"
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="hidden sm:block"
                 >
                   <img
                     src="/shafu.jpg"
                     alt="shafu judging"
-                    className="w-12 h-12 rounded-full border-2 border-yellow-400 animate-bounce cursor-pointer hover:scale-110 transition-transform duration-300"
+                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-yellow-400 animate-bounce cursor-pointer hover:scale-110 transition-transform duration-300"
                     style={{ imageRendering: 'pixelated' }}
                   />
                 </a>
-                <div className="text-yellow-400 font-bold text-lg">
+                <div className="text-yellow-400 font-bold text-sm sm:text-base lg:text-lg text-center px-2">
                   {currentRoastingMessage}
                 </div>
                 <a
                   href="https://x.com/shafu0x"
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="hidden sm:block"
                 >
                   <img
                     src="/shafu.jpg"
                     alt="shafu judging"
-                    className="w-12 h-12 rounded-full border-2 border-yellow-400 animate-bounce cursor-pointer hover:scale-110 transition-transform duration-300"
+                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-yellow-400 animate-bounce cursor-pointer hover:scale-110 transition-transform duration-300"
                     style={{
                       imageRendering: 'pixelated',
                       animationDelay: '0.5s',
@@ -555,7 +574,24 @@ ${createRoastPrompt(contractName, contractContent)}`;
                   />
                 </a>
               </div>
-              <div className="text-yellow-300 text-sm">
+
+              {/* Mobile: Single centered avatar */}
+              <div className="flex justify-center mb-3 sm:hidden">
+                <a
+                  href="https://x.com/shafu0x"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src="/shafu.jpg"
+                    alt="shafu judging"
+                    className="w-16 h-16 rounded-full border-2 border-yellow-400 animate-bounce cursor-pointer hover:scale-110 transition-transform duration-300"
+                    style={{ imageRendering: 'pixelated' }}
+                  />
+                </a>
+              </div>
+
+              <div className="text-yellow-300 text-xs sm:text-sm px-2">
                 <a
                   href="https://x.com/shafu0x"
                   target="_blank"
@@ -573,16 +609,16 @@ ${createRoastPrompt(contractName, contractContent)}`;
         {/* Roast Results */}
         {(roast || roasting) && (
           <Card className="border-red-500/20 bg-black/40 backdrop-blur animate-slideUp">
-            <CardHeader>
-              <div className="flex items-center justify-between">
-                <div>
-                  <CardTitle className="text-red-400 flex items-center gap-2">
+            <CardHeader className="px-4 py-4 sm:px-6 sm:py-6">
+              <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
+                <div className="min-w-0">
+                  <CardTitle className="text-red-400 flex items-center gap-2 text-lg sm:text-xl lg:text-2xl">
                     🔥 THE ROAST 🔥
                     {ultraSavageMode && (
                       <span className="animate-spin">💀</span>
                     )}
                   </CardTitle>
-                  <CardDescription>
+                  <CardDescription className="text-sm sm:text-base mt-2">
                     {roasting
                       ? 'Streaming roast in real-time...'
                       : showSuccess
@@ -593,7 +629,7 @@ ${createRoastPrompt(contractName, contractContent)}`;
 
                 {/* Success & Sharing */}
                 {!roasting && roast && (
-                  <div className="flex gap-2">
+                  <div className="flex flex-col sm:flex-row gap-2 w-full lg:w-auto">
                     <Button
                       variant="outline"
                       size="sm"
@@ -603,7 +639,7 @@ ${createRoastPrompt(contractName, contractContent)}`;
                           '💀 Roast copied! Perfect for ending friendships'
                         );
                       }}
-                      className="border-gray-600 hover:border-red-500"
+                      className="border-gray-600 hover:border-red-500 h-9 text-xs sm:text-sm flex-1 sm:flex-none"
                     >
                       📋 Copy Roast
                     </Button>
@@ -617,7 +653,7 @@ ${createRoastPrompt(contractName, contractContent)}`;
                           '_blank'
                         );
                       }}
-                      className="border-gray-600 hover:border-blue-500"
+                      className="border-gray-600 hover:border-blue-500 h-9 text-xs sm:text-sm flex-1 sm:flex-none"
                     >
                       🐦 Tweet Burn
                     </Button>
@@ -626,10 +662,10 @@ ${createRoastPrompt(contractName, contractContent)}`;
               </div>
             </CardHeader>
 
-            <CardContent>
+            <CardContent className="px-4 pb-4 sm:px-6 sm:pb-6">
               <div
                 ref={roastContainerRef}
-                className={`min-h-[400px] max-h-[600px] overflow-y-auto bg-black/60 text-white border border-red-500/30 rounded-md p-4 font-mono text-sm leading-relaxed scroll-smooth ${
+                className={`min-h-[300px] sm:min-h-[400px] max-h-[500px] sm:max-h-[600px] overflow-y-auto bg-black/60 text-white border border-red-500/30 rounded-md p-3 sm:p-4 font-mono text-xs sm:text-sm leading-relaxed scroll-smooth ${
                   roasting ? 'animate-pulse' : ''
                 }`}
               >
@@ -643,27 +679,45 @@ ${createRoastPrompt(contractName, contractContent)}`;
 
               {/* Roast Quality Assessment */}
               {!roasting && roast && (
-                <div className="mt-4 space-y-2">
-                  <div className="flex items-center justify-between">
-                    <div className="text-sm text-gray-400">
-                      📊 Roast Quality: {roastSeverity.label} • Character Count:{' '}
-                      {roast.length} • Brutality Level:{' '}
-                      {roastSeverity.id === 'shafu' ? 'MAXIMUM' : 'HIGH'}
+                <div className="mt-4 space-y-3">
+                  {/* Stats - responsive layout */}
+                  <div className="text-xs sm:text-sm text-gray-400 text-center sm:text-left">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
+                      <span>
+                        📊 Roast Quality:{' '}
+                        <span className="text-yellow-400">
+                          {roastSeverity.label}
+                        </span>
+                      </span>
+                      <span className="hidden sm:inline">•</span>
+                      <span>
+                        Character Count:{' '}
+                        <span className="text-cyan-400">{roast.length}</span>
+                      </span>
+                      <span className="hidden sm:inline">•</span>
+                      <span>
+                        Brutality:{' '}
+                        <span className="text-red-400">
+                          {roastSeverity.id === 'shafu' ? 'MAXIMUM' : 'HIGH'}
+                        </span>
+                      </span>
                     </div>
                   </div>
+
                   {/* Meme Rating Assessment */}
                   {memeRating > 0 && (
-                    <div className="text-sm text-center p-3 bg-orange-500/10 rounded border border-orange-500/20">
-                      <div className="flex items-center justify-center gap-3 mb-2">
+                    <div className="text-xs sm:text-sm text-center p-3 bg-orange-500/10 rounded border border-orange-500/20">
+                      <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 mb-2">
                         <a
                           href="https://x.com/shafu0x"
                           target="_blank"
                           rel="noopener noreferrer"
+                          className="hidden sm:block"
                         >
                           <img
                             src="/shafu.jpg"
                             alt="shafu rating"
-                            className={`w-8 h-8 rounded-full border border-orange-400 cursor-pointer hover:scale-110 transition-transform duration-300 ${
+                            className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full border border-orange-400 cursor-pointer hover:scale-110 transition-transform duration-300 ${
                               memeRating >= 8
                                 ? 'animate-bounce'
                                 : memeRating <= 3
@@ -673,7 +727,30 @@ ${createRoastPrompt(contractName, contractContent)}`;
                             style={{ imageRendering: 'pixelated' }}
                           />
                         </a>
-                        <div className="text-orange-400 font-bold">
+
+                        {/* Mobile: Single avatar above */}
+                        <div className="flex items-center gap-2 sm:hidden mb-2">
+                          <a
+                            href="https://x.com/shafu0x"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <img
+                              src="/shafu.jpg"
+                              alt="shafu rating"
+                              className={`w-10 h-10 rounded-full border border-orange-400 cursor-pointer hover:scale-110 transition-transform duration-300 ${
+                                memeRating >= 8
+                                  ? 'animate-bounce'
+                                  : memeRating <= 3
+                                    ? 'grayscale animate-pulse'
+                                    : ''
+                              }`}
+                              style={{ imageRendering: 'pixelated' }}
+                            />
+                          </a>
+                        </div>
+
+                        <div className="text-orange-400 font-bold text-sm sm:text-base">
                           🔥{' '}
                           <a
                             href="https://x.com/shafu0x"
@@ -683,17 +760,20 @@ ${createRoastPrompt(contractName, contractContent)}`;
                           >
                             shafu
                           </a>{' '}
-                          Rating: {'🔥'.repeat(memeRating)} ({memeRating}/10)
+                          Rating: {'🔥'.repeat(Math.min(memeRating, 5))}
+                          {memeRating > 5 && '+'} ({memeRating}/10)
                         </div>
+
                         <a
                           href="https://x.com/shafu0x"
                           target="_blank"
                           rel="noopener noreferrer"
+                          className="hidden sm:block"
                         >
                           <img
                             src="/shafu.jpg"
                             alt="shafu rating"
-                            className={`w-8 h-8 rounded-full border border-orange-400 cursor-pointer hover:scale-110 transition-transform duration-300 ${
+                            className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full border border-orange-400 cursor-pointer hover:scale-110 transition-transform duration-300 ${
                               memeRating >= 8
                                 ? 'animate-bounce'
                                 : memeRating <= 3
@@ -707,13 +787,13 @@ ${createRoastPrompt(contractName, contractContent)}`;
                           />
                         </a>
                       </div>
-                      <div className="text-yellow-300 text-xs">
+                      <div className="text-yellow-300 text-xs sm:text-sm">
                         {getMemeComment(memeRating)}
                       </div>
                     </div>
                   )}
                   {showSuccess && (
-                    <div className="text-green-400 animate-bounce">
+                    <div className="text-green-400 animate-bounce text-center text-sm">
                       🏆 Achievement Unlocked: Code Destroyer
                     </div>
                   )}
@@ -726,9 +806,9 @@ ${createRoastPrompt(contractName, contractContent)}`;
         {/* Hidden Instructions */}
         {!roasting && !roast && (
           <Card className="border-gray-500/20 bg-black/20 backdrop-blur">
-            <CardContent className="text-center py-8">
-              <div className="text-gray-400 space-y-4">
-                <div className="flex items-center justify-center gap-2">
+            <CardContent className="text-center py-6 sm:py-8 px-4 sm:px-6">
+              <div className="text-gray-400 space-y-3 sm:space-y-4">
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3">
                   <a
                     href="https://x.com/shafu0x"
                     target="_blank"
@@ -753,34 +833,38 @@ ${createRoastPrompt(contractName, contractContent)}`;
                     <img
                       src="/shafu.jpg"
                       alt="shafu"
-                      className="w-6 h-6 rounded-full border border-gray-400 hover:border-orange-400 transition-all duration-300 hover:scale-125 cursor-pointer"
+                      className="w-8 h-8 sm:w-6 sm:h-6 rounded-full border border-gray-400 hover:border-orange-400 transition-all duration-300 hover:scale-125 cursor-pointer"
                       style={{ imageRendering: 'pixelated' }}
                     />
                   </a>
-                  <div>
+                  <div className="text-sm sm:text-base text-center">
                     🎮 Pro tip: Try the Konami code for maximum destruction
                   </div>
                 </div>
-                <div className="text-xs">↑ ↑ ↓ ↓ ← → ← → B A</div>
-                <div className="text-xs mt-4 flex items-center justify-center gap-2">
-                  <span>Built with 💀 by</span>
-                  <a
-                    href="https://x.com/shafu0x"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1 hover:scale-105 transition-transform duration-300"
-                  >
-                    <img
-                      src="/shafu.jpg"
-                      alt="shafu"
-                      className="w-4 h-4 rounded-full border border-orange-400 animate-pulse cursor-pointer"
-                      style={{ imageRendering: 'pixelated' }}
-                    />
-                    <span className="hover:underline cursor-pointer text-orange-400">
-                      shafu
-                    </span>
-                  </a>
-                  <span>for the Solidity community</span>
+                <div className="text-xs sm:text-sm font-mono tracking-wider">
+                  ↑ ↑ ↓ ↓ ← → ← → B A
+                </div>
+                <div className="text-xs sm:text-sm mt-4">
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-2">
+                    <span>Built with 💀 by</span>
+                    <a
+                      href="https://x.com/shafu0x"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 hover:scale-105 transition-transform duration-300"
+                    >
+                      <img
+                        src="/shafu.jpg"
+                        alt="shafu"
+                        className="w-4 h-4 rounded-full border border-orange-400 animate-pulse cursor-pointer"
+                        style={{ imageRendering: 'pixelated' }}
+                      />
+                      <span className="hover:underline cursor-pointer text-orange-400">
+                        shafu
+                      </span>
+                    </a>
+                    <span>for the Solidity community</span>
+                  </div>
                 </div>
               </div>
             </CardContent>
