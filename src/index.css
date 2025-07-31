@@ -82,12 +82,153 @@ code {
     source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+/* 🎭 COMEDY ANIMATIONS */
+
 /* Streaming cursor animation */
 @keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
 }
 
 .typing-cursor {
   animation: blink 1s infinite;
+}
+
+/* Shake animation for errors */
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5px);
+  }
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Slide up animation */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slideUp {
+  animation: slideUp 0.6s ease-out;
+}
+
+/* Glow effect for ultra savage mode */
+@keyframes glow {
+  0%,
+  100% {
+    box-shadow: 0 0 5px #ef4444;
+  }
+  50% {
+    box-shadow:
+      0 0 20px #ef4444,
+      0 0 30px #ef4444;
+  }
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* Fire flicker effect */
+@keyframes flicker {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    opacity: 0.8;
+    transform: scale(1.05) rotate(1deg);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(0.95) rotate(-1deg);
+  }
+  75% {
+    opacity: 0.85;
+    transform: scale(1.02) rotate(0.5deg);
+  }
+}
+
+.animate-flicker {
+  animation: flicker 1.5s ease-in-out infinite;
+}
+
+/* Typewriter effect for loading text */
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.animate-typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid #ef4444;
+  animation: typewriter 2s steps(40) infinite;
+}
+
+/* Explosion effect for success */
+@keyframes explode {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.2) rotate(180deg);
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+  }
+}
+
+.animate-explode {
+  animation: explode 0.6s ease-in-out;
 }
