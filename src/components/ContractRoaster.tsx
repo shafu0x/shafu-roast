@@ -412,14 +412,23 @@ ${createRoastPrompt(contractName, contractContent)}`;
           <CardHeader className="text-center relative px-4 py-6 sm:px-6 sm:py-8">
             {/* shafu Avatar - responsive positioning */}
             <div className="absolute top-3 right-3 sm:top-4 sm:right-4">
-              <img
-                src="/shafu.jpg"
-                alt="shafu"
-                className={`w-12 h-12 sm:w-16 sm:h-16 rounded-full border-2 border-orange-400 pixelated transition-all duration-300 ${
-                  shafuJudging ? 'animate-bounce scale-110 border-red-500' : ''
-                } ${ultraSavageMode ? 'animate-spin border-red-600' : ''}`}
-                style={{ imageRendering: 'pixelated' }}
-              />
+              <a
+                href="https://x.com/shafu0x"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cursor-pointer hover:scale-110 transition-transform duration-300"
+              >
+                <img
+                  src="/shafu.jpg"
+                  alt="shafu"
+                  className={`w-12 h-12 sm:w-16 sm:h-16 rounded-full border-2 border-orange-400 pixelated transition-all duration-300 ${
+                    shafuJudging
+                      ? 'animate-bounce scale-110 border-red-500'
+                      : ''
+                  } ${ultraSavageMode ? 'animate-spin border-red-600' : ''}`}
+                  style={{ imageRendering: 'pixelated' }}
+                />
+              </a>
               {shafuJudging && (
                 <div className="absolute -top-6 -left-3 sm:-top-8 sm:-left-4 bg-black/80 text-orange-400 text-xs px-2 py-1 rounded animate-pulse">
                   Judging...
@@ -816,12 +825,19 @@ ${createRoastPrompt(contractName, contractContent)}`;
                   {/* Card Footer */}
                   <div className="flex items-center justify-between text-xs sm:text-sm text-gray-400">
                     <div className="flex items-center gap-2">
-                      <img
-                        src="/shafu.jpg"
-                        alt="shafu"
-                        className="w-5 h-5 rounded-full border border-orange-400"
-                        style={{ imageRendering: 'pixelated' }}
-                      />
+                      <a
+                        href="https://x.com/shafu0x"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="cursor-pointer hover:scale-110 transition-transform duration-300"
+                      >
+                        <img
+                          src="/shafu.jpg"
+                          alt="shafu"
+                          className="w-5 h-5 rounded-full border border-orange-400"
+                          style={{ imageRendering: 'pixelated' }}
+                        />
+                      </a>
                       <span>
                         Roasted by{' '}
                         <span className="text-orange-400">shafu</span>
