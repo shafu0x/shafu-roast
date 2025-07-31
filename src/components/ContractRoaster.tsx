@@ -766,17 +766,17 @@ ${createRoastPrompt(contractName, contractContent)}`;
                 {/* Card Content */}
                 <div className="relative z-10">
                   {/* Card Header with Repo Info */}
-                  <div className="flex items-center gap-4 mb-6">
+                  <div className="flex items-center gap-4 mb-6 pb-2">
                     {/* GitHub Repo Logo/Avatar */}
-                    <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-lg bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center text-white font-bold text-lg sm:text-xl shadow-lg">
+                    <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-lg bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center text-white font-bold text-lg sm:text-xl shadow-lg flex-shrink-0">
                       {contractName.charAt(0).toUpperCase()}
                     </div>
 
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-white font-bold text-lg sm:text-xl truncate">
+                      <h3 className="text-white font-bold text-base sm:text-lg break-words leading-tight mb-1">
                         {contractName}
                       </h3>
-                      <div className="flex items-center gap-2 text-sm text-gray-400">
+                      <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-400">
                         <Badge
                           variant="outline"
                           className="border-red-500/30 text-red-400"
