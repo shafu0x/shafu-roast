@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import {
   useEcho,
   useEchoOpenAI,
@@ -32,6 +32,7 @@ export function ContractRoaster() {
   const [fetchingContract, setFetchingContract] = useState(false);
   const [roasting, setRoasting] = useState(false);
   const [error, setError] = useState('');
+  const roastContainerRef = useRef<HTMLDivElement>(null);
 
   const fetchContract = async () => {
     setFetchingContract(true);
@@ -83,6 +84,10 @@ ${createRoastPrompt(contractName, contractContent)}`,
         const content = chunk.choices[0]?.delta?.content || '';
         if (content) {
           setRoast(prev => prev + content);
+          // Auto-scroll to bottom
+          if (roastContainerRef.current) {
+            roastContainerRef.current.scrollTop = roastContainerRef.current.scrollHeight;
+          }
         }
       }
     } catch (err: any) {
@@ -186,7 +191,13 @@ ${createRoastPrompt(contractName, contractContent)}`,
                   disabled={roasting}
                   className="bg-red-600 hover:bg-red-700"
                 >
-                  {roasting ? '🔥 Streaming...' : '🔥 ROAST IT! 🔥'}
+                  {roasting ? (
+                    <>
+                      <span className="animate-pulse">🔥 Roasting...</span>
+                    </>
+                  ) : (
+                    '🔥 ROAST IT! 🔥'
+                  )}
                 </Button>
               </CardTitle>
             </CardHeader>
@@ -201,20 +212,23 @@ ${createRoastPrompt(contractName, contractContent)}`,
         )}
 
         {/* Roast Results */}
-        {roast && (
+        {(roast || roasting) && (
           <Card className="border-red-500/20 bg-black/40 backdrop-blur">
             <CardHeader>
               <CardTitle className="text-red-400">🔥 THE ROAST 🔥</CardTitle>
               <CardDescription>
-                Prepare yourself for the truth...
+                {roasting ? 'Analyzing your terrible code...' : 'Prepare yourself for the truth...'}
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Textarea
-                value={roast}
-                readOnly
-                className="min-h-[400px] bg-black/60 text-white border-red-500/30 font-mono text-sm leading-relaxed"
-              />
+              <div 
+                ref={roastContainerRef}
+                className="min-h-[400px] max-h-[600px] overflow-y-auto bg-black/60 text-white border border-red-500/30 rounded-md p-4 font-mono text-sm leading-relaxed scroll-smooth">
+                <pre className="whitespace-pre-wrap">
+                  {roast}
+                  {roasting && <span className="inline-block w-2 h-4 bg-red-500 typing-cursor ml-1" />}
+                </pre>
+              </div>
             </CardContent>
           </Card>
         )}
