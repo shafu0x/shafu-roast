@@ -94,7 +94,6 @@ export function ContractRoaster() {
   const [roastSeverity, setRoastSeverity] = useState(ROAST_SEVERITIES[2]); // Default to "Well Done"
   const [currentLoadingMessage, setCurrentLoadingMessage] = useState('');
   const [currentRoastingMessage, setCurrentRoastingMessage] = useState('');
-  const [showSuccess, setShowSuccess] = useState(false);
   const [konamiCode, setKonamiCode] = useState('');
   const [ultraSavageMode, setUltraSavageMode] = useState(false);
   const [shafuJudging, setShafuJudging] = useState(false);
@@ -257,7 +256,6 @@ export function ContractRoaster() {
     setContractContent('');
     setContractName('');
     setRoast('');
-    setShowSuccess(false);
 
     // 🎯 Start with random loading message and rotate every 2 seconds
     const startMessage = getRandomLoadingMessage();
@@ -301,10 +299,20 @@ export function ContractRoaster() {
   const generateRoast = async () => {
     if (!contractContent) return;
 
+    // 🏆 Special case for Merit Escrow contract
+    if (
+      githubUrl ===
+      'https://github.com/Merit-Systems/contracts/blob/master/src/Escrow.sol'
+    ) {
+      setRoast(
+        'This contract is written by shafu and therefore perfect by definition'
+      );
+      return;
+    }
+
     setRoasting(true);
     setRoast(''); // Clear previous roast
     setError('');
-    setShowSuccess(false);
 
     // 🔥 Start rotating roasting messages
     const startMessage = getRandomRoastingMessage();
@@ -356,10 +364,6 @@ ${createRoastPrompt(contractName, contractContent)}`;
           await new Promise(resolve => setTimeout(resolve, 20));
         }
       }
-
-      // 🎉 Success state
-      setShowSuccess(true);
-      setTimeout(() => setShowSuccess(false), 5000);
     } catch (err: any) {
       setError(getSavageError('Failed to generate roast: ' + err.message));
     } finally {
@@ -851,13 +855,6 @@ ${createRoastPrompt(contractName, contractContent)}`;
                     </Button>
                   </div>
                 </>
-              )}
-
-              {/* Success Message */}
-              {showSuccess && (
-                <div className="text-green-400 animate-bounce text-center text-sm mt-4">
-                  🏆 Achievement Unlocked: Twitter Roast Master
-                </div>
               )}
             </CardContent>
           </Card>
