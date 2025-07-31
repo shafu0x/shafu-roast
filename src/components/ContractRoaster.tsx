@@ -97,14 +97,8 @@ export function ContractRoaster() {
   const [showSuccess, setShowSuccess] = useState(false);
   const [konamiCode, setKonamiCode] = useState('');
   const [ultraSavageMode, setUltraSavageMode] = useState(false);
-  const [memeRating, setMemeRating] = useState<number>(0);
   const [shafuJudging, setShafuJudging] = useState(false);
   const roastContainerRef = useRef<HTMLDivElement>(null);
-
-  // 🎲 Generate random meme rating when contract is loaded
-  const generateMemeRating = () => {
-    return Math.floor(Math.random() * 10) + 1; // 1-10 shafu coins
-  };
 
   // 🎮 Konami Code: Up Up Down Down Left Right Left Right B A
   const KONAMI_SEQUENCE =
@@ -283,10 +277,6 @@ export function ContractRoaster() {
 
       setContractContent(result.content);
       setContractName(result.name);
-
-      // 🎲 Generate meme rating
-      const rating = generateMemeRating();
-      setMemeRating(rating);
 
       // 🎉 Success message
       setCurrentLoadingMessage(
@@ -752,7 +742,7 @@ ${createRoastPrompt(contractName, contractContent)}`;
               {/* Twitter-style Roast Card */}
               <div
                 id="roast-card"
-                className="bg-gradient-to-br from-gray-900 via-black to-gray-900 border-2 border-red-500/30 p-6 sm:p-8 relative overflow-hidden"
+                className="bg-gradient-to-br from-gray-900 via-black to-gray-900 border-2 border-red-500/30 rounded-xl p-6 sm:p-8 relative overflow-hidden"
               >
                 {/* Background Pattern */}
                 <div className="absolute inset-0 opacity-5">
@@ -780,25 +770,10 @@ ${createRoastPrompt(contractName, contractContent)}`;
                         <span>{contractContent.split('\n').length} lines</span>
                       </div>
                     </div>
-
-                    {/* shafu Rating */}
-                    <div className="text-center">
-                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-orange-400 overflow-hidden mb-1 shadow-lg">
-                        <img
-                          src="/shafu.jpg"
-                          alt="shafu"
-                          className="w-full h-full object-cover"
-                          style={{ imageRendering: 'pixelated' }}
-                        />
-                      </div>
-                      <div className="text-xs text-orange-400 font-bold">
-                        {memeRating}/10
-                      </div>
-                    </div>
                   </div>
 
                   {/* Roast Content */}
-                  <div className="bg-black/80 p-4 sm:p-6 border border-red-500/20 mb-6 shadow-inner">
+                  <div className="bg-black/80 rounded-lg p-4 sm:p-6 border border-red-500/20 mb-6 shadow-inner">
                     {roasting ? (
                       <div className="flex items-center justify-center py-8">
                         <div className="text-yellow-400 animate-pulse text-center">
