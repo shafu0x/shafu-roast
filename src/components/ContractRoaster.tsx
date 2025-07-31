@@ -29,11 +29,12 @@ export function ContractRoaster() {
   const [contractContent, setContractContent] = useState('');
   const [contractName, setContractName] = useState('');
   const [roast, setRoast] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [fetchingContract, setFetchingContract] = useState(false);
+  const [roasting, setRoasting] = useState(false);
   const [error, setError] = useState('');
 
   const fetchContract = async () => {
-    setLoading(true);
+    setFetchingContract(true);
     setError('');
     setContractContent('');
     setContractName('');
@@ -52,14 +53,14 @@ export function ContractRoaster() {
     } catch (err: any) {
       setError(`❌ Failed to fetch contract: ${err.message}`);
     } finally {
-      setLoading(false);
+      setFetchingContract(false);
     }
   };
 
   const generateRoast = async () => {
     if (!contractContent) return;
 
-    setLoading(true);
+    setRoasting(true);
     setRoast(''); // Clear previous roast
     setError('');
 
@@ -68,12 +69,10 @@ export function ContractRoaster() {
         model: 'gpt-4o-mini',
         messages: [
           {
-            role: 'system',
-            content: ROASTER_SYSTEM_PROMPT,
-          },
-          {
             role: 'user',
-            content: createRoastPrompt(contractName, contractContent),
+            content: `${ROASTER_SYSTEM_PROMPT}
+
+${createRoastPrompt(contractName, contractContent)}`,
           },
         ],
         max_tokens: 1500,
@@ -89,7 +88,7 @@ export function ContractRoaster() {
     } catch (err: any) {
       setError('Failed to generate roast: ' + err.message);
     } finally {
-      setLoading(false);
+      setRoasting(false);
     }
   };
 
@@ -149,10 +148,10 @@ export function ContractRoaster() {
               />
               <Button
                 onClick={fetchContract}
-                disabled={loading || !githubUrl}
+                disabled={fetchingContract || !githubUrl}
                 className="bg-orange-600 hover:bg-orange-700"
               >
-                {loading ? 'Fetching...' : 'Fetch Contract'}
+                {fetchingContract ? 'Fetching...' : 'Fetch Contract'}
               </Button>
             </div>
 
@@ -184,10 +183,10 @@ export function ContractRoaster() {
                 </div>
                 <Button
                   onClick={generateRoast}
-                  disabled={loading}
+                  disabled={roasting}
                   className="bg-red-600 hover:bg-red-700"
                 >
-                  {loading ? '🔥 Streaming...' : '🔥 ROAST IT! 🔥'}
+                  {roasting ? '🔥 Streaming...' : '🔥 ROAST IT! 🔥'}
                 </Button>
               </CardTitle>
             </CardHeader>
