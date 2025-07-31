@@ -13,6 +13,7 @@
     "@zdql/echo-react-sdk": "^0.1.25",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "html2canvas": "^1.4.1",
     "lucide-react": "^0.535.0",
     "openai": "^5.11.0",
     "react": "^19.1.1",

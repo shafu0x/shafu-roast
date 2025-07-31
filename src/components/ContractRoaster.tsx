@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { flushSync } from 'react-dom';
 import { useEcho, useEchoOpenAI, EchoSignIn } from '@zdql/echo-react-sdk';
+import html2canvas from 'html2canvas';
 
 import { Button } from './ui/button';
 import { Input } from './ui/input';
@@ -154,6 +155,106 @@ export function ContractRoaster() {
   const loadExampleUrl = (url: string) => {
     setGithubUrl(url);
     setError('');
+  };
+
+  // 📸 Image capture and sharing functions
+  const captureCardAsImage = async (): Promise<Blob | null> => {
+    const cardElement = document.getElementById('roast-card');
+    if (!cardElement) {
+      alert('❌ Card not found! Please try again.');
+      return null;
+    }
+
+    try {
+      const canvas = await html2canvas(cardElement, {
+        backgroundColor: '#000000',
+        scale: 2, // Higher resolution
+        useCORS: true,
+        allowTaint: true,
+        scrollX: 0,
+        scrollY: 0,
+      });
+
+      return new Promise(resolve => {
+        canvas.toBlob(resolve, 'image/png', 1.0);
+      });
+    } catch (error) {
+      console.error('Failed to capture card:', error);
+      alert('❌ Failed to capture card. Please try again.');
+      return null;
+    }
+  };
+
+  const downloadCardImage = async () => {
+    const blob = await captureCardAsImage();
+    if (!blob) return;
+
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${contractName}-roast-by-shafu.png`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+
+    alert('📸 Roast card downloaded! Perfect for sharing on social media.');
+  };
+
+  const copyCardImage = async () => {
+    const blob = await captureCardAsImage();
+    if (!blob) return;
+
+    try {
+      await navigator.clipboard.write([
+        new ClipboardItem({ 'image/png': blob }),
+      ]);
+      alert('📋 Roast card copied to clipboard! Paste it anywhere.');
+    } catch (error) {
+      console.error('Failed to copy image:', error);
+      // Fallback to download if clipboard doesn't support images
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `${contractName}-roast-by-shafu.png`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      alert('📸 Clipboard not supported. Downloaded image instead!');
+    }
+  };
+
+  const shareCardImage = async () => {
+    const blob = await captureCardAsImage();
+    if (!blob) return;
+
+    const file = new File([blob], `${contractName}-roast-by-shafu.png`, {
+      type: 'image/png',
+    });
+
+    if (
+      navigator.share &&
+      navigator.canShare &&
+      navigator.canShare({ files: [file] })
+    ) {
+      try {
+        await navigator.share({
+          title: `${contractName} Roasted by shafu`,
+          text: `Check out this savage roast of ${contractName}! 🔥`,
+          files: [file],
+        });
+      } catch (error: any) {
+        if (error.name !== 'AbortError') {
+          console.error('Failed to share:', error);
+          // Fallback to download
+          downloadCardImage();
+        }
+      }
+    } else {
+      // Fallback to download if native sharing isn't supported
+      downloadCardImage();
+    }
   };
 
   const fetchContract = async () => {
@@ -756,45 +857,43 @@ ${createRoastPrompt(contractName, contractContent)}`;
 
               {/* Action Buttons */}
               {!roasting && roast && (
-                <div className="flex flex-col sm:flex-row gap-3 mt-6">
-                  <Button
-                    onClick={() => {
-                      const cardText = `🔥 Contract: ${contractName}\n\n${roast}\n\nRoasted by @shafu0x\n🔗 shafu-roast.vercel.app`;
-                      navigator.clipboard.writeText(cardText);
-                      alert(
-                        '📋 Roast card copied as text! Perfect for Twitter'
-                      );
-                    }}
-                    className="flex-1 bg-blue-600 hover:bg-blue-700"
-                  >
-                    📋 Copy Card Text
-                  </Button>
+                <>
+                  <div className="flex flex-col sm:flex-row gap-3 mt-6">
+                    <Button
+                      onClick={copyCardImage}
+                      className="flex-1 bg-blue-600 hover:bg-blue-700"
+                    >
+                      📋 Copy Image
+                    </Button>
 
-                  <Button
-                    onClick={() => {
-                      const text = `🔥 Just got my ${contractName} contract roasted by @shafu0x! 💀\n\n"${roast}"\n\nGet your contracts destroyed: https://shafu-roast.vercel.app/`;
-                      window.open(
-                        `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`,
-                        '_blank'
-                      );
-                    }}
-                    className="flex-1 bg-[#1DA1F2] hover:bg-[#1a8cd8]"
-                  >
-                    🐦 Share on Twitter
-                  </Button>
+                    <Button
+                      onClick={downloadCardImage}
+                      className="flex-1 bg-green-600 hover:bg-green-700"
+                    >
+                      📸 Download PNG
+                    </Button>
 
-                  <Button
-                    variant="outline"
-                    onClick={() => {
-                      alert(
-                        '📸 Pro tip: Take a screenshot of the card above for the perfect shareable image!'
-                      );
-                    }}
-                    className="flex-1 border-gray-600 hover:border-green-500"
-                  >
-                    📸 Screenshot Tips
-                  </Button>
-                </div>
+                    <Button
+                      onClick={shareCardImage}
+                      className="flex-1 bg-purple-600 hover:bg-purple-700"
+                    >
+                      📤 Share Image
+                    </Button>
+
+                    <Button
+                      onClick={() => {
+                        const text = `🔥 Just got my ${contractName} contract roasted by @shafu0x! 💀\n\nGet your contracts destroyed: https://shafu-roast.vercel.app/`;
+                        window.open(
+                          `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`,
+                          '_blank'
+                        );
+                      }}
+                      className="flex-1 bg-[#1DA1F2] hover:bg-[#1a8cd8]"
+                    >
+                      🐦 Tweet
+                    </Button>
+                  </div>
+                </>
               )}
 
               {/* Success Message */}
