@@ -292,7 +292,7 @@ ${createRoastPrompt(contractName, contractContent)}`;
       <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 flex items-center justify-center p-4">
         <Card className="w-full max-w-md">
           <CardHeader className="text-center">
-            <CardTitle className="text-3xl font-bold">
+            <CardTitle className="text-3xl font-bold text-cyan-400">
               🔥 shafu Roast 🔥
             </CardTitle>
             <CardDescription>
@@ -334,7 +334,7 @@ ${createRoastPrompt(contractName, contractContent)}`;
               )}
             </div>
 
-            <CardTitle className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-600">
+            <CardTitle className="text-4xl font-bold text-cyan-400">
               🔥 shafu Roast 🔥 {ultraSavageMode && '💀'}
             </CardTitle>
             <CardDescription className="text-lg text-gray-300">

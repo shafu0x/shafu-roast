@@ -90,10 +90,9 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Press Start 2P', monospace;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  text-shadow: 
-    0 0 5px hsl(var(--primary) / 0.5),
-    0 0 10px hsl(var(--primary) / 0.3);
+  text-shadow: 0 0 3px hsl(var(--primary) / 0.2);
   line-height: 1.5;
+  color: hsl(var(--foreground));
 }
 
 /* 🔥 CYBERPUNK GLOBAL STYLES */
