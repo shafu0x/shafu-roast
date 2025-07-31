@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import { flushSync } from 'react-dom';
 import {
   useEcho,
   useEchoOpenAI,
@@ -66,6 +67,7 @@ export function ContractRoaster() {
     setError('');
 
     try {
+      // Use streaming with better implementation
       const stream = await openai.chat.completions.create({
         model: 'gpt-4o-mini',
         messages: [
@@ -81,14 +83,21 @@ ${createRoastPrompt(contractName, contractContent)}`,
       });
 
       for await (const chunk of stream) {
-        const content = chunk.choices[0]?.delta?.content || '';
+        const content = chunk.choices[0]?.delta?.content;
         if (content) {
-          setRoast(prev => prev + content);
+          // Force immediate update using flushSync
+          flushSync(() => {
+            setRoast(prev => prev + content);
+          });
+
           // Auto-scroll to bottom
           if (roastContainerRef.current) {
             roastContainerRef.current.scrollTop =
               roastContainerRef.current.scrollHeight;
           }
+
+          // Small delay to create visible streaming effect
+          await new Promise(resolve => setTimeout(resolve, 20));
         }
       }
     } catch (err: any) {
