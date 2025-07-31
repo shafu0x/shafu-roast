@@ -51,27 +51,27 @@ const ROASTING_MESSAGES = [
 const ROAST_SEVERITIES = [
   {
     id: 'gentle',
-    label: '🥺 Gentle Feedback',
+    label: '🥺 Gentle',
     prompt: 'Be constructive and kind',
   },
   {
     id: 'medium',
-    label: '😤 Medium Rare Roast',
+    label: '😤 Medium',
     prompt: 'Be funny but helpful',
   },
   {
     id: 'spicy',
-    label: '🔥 Well Done Destruction',
+    label: '🔥 Well Done',
     prompt: 'Be savage and hilarious',
   },
   {
     id: 'nuclear',
-    label: '💀 Absolutely Nuclear',
+    label: '💀 Nuclear',
     prompt: 'Show no mercy, maximum savagery',
   },
   {
     id: 'shafu',
-    label: '🌋 shafu Mode',
+    label: '🌋 shafu',
     prompt: 'Channel the spirit of shafu - ultimate destruction',
   },
 ];
