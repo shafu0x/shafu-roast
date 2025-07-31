@@ -321,9 +321,7 @@ ${createRoastPrompt(contractName, contractContent)}`;
                 src="/shafu.jpg"
                 alt="shafu"
                 className={`w-16 h-16 rounded-full border-2 border-orange-400 pixelated transition-all duration-300 ${
-                  shafuJudging
-                    ? 'animate-bounce scale-110 border-red-500'
-                    : ''
+                  shafuJudging ? 'animate-bounce scale-110 border-red-500' : ''
                 } ${ultraSavageMode ? 'animate-spin border-red-600' : ''}`}
                 style={{ imageRendering: 'pixelated' }}
               />
@@ -337,7 +335,7 @@ ${createRoastPrompt(contractName, contractContent)}`;
             <CardTitle className="text-4xl font-bold text-cyan-400">
               🔥 shafu Roast 🔥 {ultraSavageMode && '💀'}
             </CardTitle>
-            <CardDescription className="text-lg text-gray-300">
+            <CardDescription className="text-lg text-gray-200">
               Submit your Solidity contracts for a ruthless code review
               {ultraSavageMode && (
                 <div className="text-red-400 font-bold mt-2 animate-bounce">
@@ -351,7 +349,9 @@ ${createRoastPrompt(contractName, contractContent)}`;
         {/* Roast Severity Selector */}
         <Card className="border-purple-500/20 bg-black/40 backdrop-blur">
           <CardHeader>
-            <CardTitle className="text-white">🎯 Destruction Level</CardTitle>
+            <CardTitle className="text-cyan-400">
+              🎯 Destruction Level
+            </CardTitle>
             <CardDescription>
               Choose your preferred level of digital violence
             </CardDescription>
@@ -403,7 +403,9 @@ ${createRoastPrompt(contractName, contractContent)}`;
         {/* Input Section */}
         <Card className="border-orange-500/20 bg-black/40 backdrop-blur">
           <CardHeader>
-            <CardTitle className="text-white">🎯 Target Acquisition</CardTitle>
+            <CardTitle className="text-cyan-400">
+              🎯 Target Acquisition
+            </CardTitle>
             <CardDescription>
               Drop a GitHub link and watch your contract get absolutely
               demolished
@@ -415,7 +417,7 @@ ${createRoastPrompt(contractName, contractContent)}`;
                 placeholder="https://github.com/user/repo/blob/main/contracts/YourDoomedContract.sol"
                 value={githubUrl}
                 onChange={e => setGithubUrl(e.target.value)}
-                className="flex-1"
+                className="flex-1 placeholder:text-gray-500"
                 onKeyPress={e =>
                   e.key === 'Enter' &&
                   !fetchingContract &&
@@ -455,7 +457,7 @@ ${createRoastPrompt(contractName, contractContent)}`;
         {contractContent && (
           <Card className="border-green-500/20 bg-black/40 backdrop-blur animate-fadeIn">
             <CardHeader>
-              <CardTitle className="text-white flex items-center justify-between">
+              <CardTitle className="text-cyan-400 flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Badge
                     variant="secondary"
