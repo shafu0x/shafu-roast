@@ -752,7 +752,7 @@ ${createRoastPrompt(contractName, contractContent)}`;
               {/* Twitter-style Roast Card */}
               <div
                 id="roast-card"
-                className="bg-gradient-to-br from-gray-900 via-black to-gray-900 border-2 border-red-500/30 rounded-xl p-6 sm:p-8 relative overflow-hidden"
+                className="bg-gradient-to-br from-gray-900 via-black to-gray-900 border-2 border-red-500/30 p-6 sm:p-8 relative overflow-hidden"
               >
                 {/* Background Pattern */}
                 <div className="absolute inset-0 opacity-5">
@@ -798,7 +798,7 @@ ${createRoastPrompt(contractName, contractContent)}`;
                   </div>
 
                   {/* Roast Content */}
-                  <div className="bg-black/80 rounded-lg p-4 sm:p-6 border border-red-500/20 mb-6 shadow-inner">
+                  <div className="bg-black/80 p-4 sm:p-6 border border-red-500/20 mb-6 shadow-inner">
                     {roasting ? (
                       <div className="flex items-center justify-center py-8">
                         <div className="text-yellow-400 animate-pulse text-center">
