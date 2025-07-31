@@ -284,17 +284,17 @@ ${createRoastPrompt(contractName, contractContent)}`;
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 flex items-center justify-center p-4">
-        <Card className="w-full max-w-md">
-          <CardHeader className="text-center">
-            <CardTitle className="text-3xl font-bold text-cyan-400">
+      <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 flex items-center justify-center p-3 sm:p-4 lg:p-6">
+        <Card className="w-full max-w-sm sm:max-w-md lg:max-w-lg border-orange-500/20 bg-black/40 backdrop-blur">
+          <CardHeader className="text-center px-4 py-6 sm:px-6 sm:py-8">
+            <CardTitle className="text-2xl sm:text-3xl lg:text-4xl font-bold text-cyan-400">
               🔥 shafu Roast 🔥
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-sm sm:text-base lg:text-lg text-gray-200 mt-2">
               Your contracts suck and I will tell you why
             </CardDescription>
           </CardHeader>
-          <CardContent className="flex justify-center">
+          <CardContent className="flex justify-center items-center px-4 pb-6 sm:px-6 sm:pb-8 lg:pb-10">
             <EchoSignIn />
           </CardContent>
         </Card>
