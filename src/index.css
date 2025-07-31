@@ -232,3 +232,17 @@ code {
 .animate-explode {
   animation: explode 0.6s ease-in-out;
 }
+
+/* 🎮 Pixelated image rendering for shafu avatar */
+.pixelated {
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-crisp-edges;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* shafu hover effects */
+img[alt="shafu"]:hover {
+  filter: drop-shadow(0 0 10px #f97316);
+  transform: scale(1.1);
+}
