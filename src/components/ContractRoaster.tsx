@@ -777,13 +777,6 @@ ${createRoastPrompt(contractName, contractContent)}`;
                         {contractName}
                       </h3>
                       <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-400">
-                        <Badge
-                          variant="outline"
-                          className="border-red-500/30 text-red-400"
-                        >
-                          {roastSeverity.label}
-                        </Badge>
-                        <span>•</span>
                         <span>{contractContent.split('\n').length} lines</span>
                       </div>
                     </div>
