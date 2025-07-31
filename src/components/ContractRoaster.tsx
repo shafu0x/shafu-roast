@@ -226,7 +226,7 @@ export function ContractRoaster() {
     // 🔥 Start rotating roasting messages
     const startMessage = getRandomRoastingMessage();
     setCurrentRoastingMessage(startMessage);
-    
+
     // 👨‍💻 shafu starts judging
     setShafuJudging(true);
 
@@ -293,7 +293,16 @@ ${createRoastPrompt(contractName, contractContent)}`;
         <Card className="w-full max-w-md">
           <CardHeader className="text-center">
             <CardTitle className="text-3xl font-bold">
-              🔥 shafu Roast 🔥
+              🔥{' '}
+              <a
+                href="https://x.com/shafu0x"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline cursor-pointer transition-all duration-300 hover:scale-105 inline-block text-orange-400"
+              >
+                shafu
+              </a>{' '}
+              Roast 🔥
             </CardTitle>
             <CardDescription>
               Your contracts suck and I will tell you why
@@ -317,23 +326,41 @@ ${createRoastPrompt(contractName, contractContent)}`;
           <CardHeader className="text-center relative">
             {/* shafu Avatar */}
             <div className="absolute top-4 right-4">
-              <img 
-                src="/shafu.jpg" 
-                alt="shafu"
-                className={`w-16 h-16 rounded-full border-2 border-orange-400 pixelated transition-all duration-300 ${
-                  shafuJudging ? 'animate-bounce scale-110 border-red-500' : ''
-                } ${ultraSavageMode ? 'animate-spin border-red-600' : ''}`}
-                style={{ imageRendering: 'pixelated' }}
-              />
+              <a
+                href="https://x.com/shafu0x"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block hover:scale-110 transition-transform duration-300"
+              >
+                <img
+                  src="/shafu.jpg"
+                  alt="shafu"
+                  className={`w-16 h-16 rounded-full border-2 border-orange-400 pixelated transition-all duration-300 cursor-pointer ${
+                    shafuJudging
+                      ? 'animate-bounce scale-110 border-red-500'
+                      : ''
+                  } ${ultraSavageMode ? 'animate-spin border-red-600' : ''}`}
+                  style={{ imageRendering: 'pixelated' }}
+                />
+              </a>
               {shafuJudging && (
                 <div className="absolute -top-8 -left-4 bg-black/80 text-orange-400 text-xs px-2 py-1 rounded animate-pulse">
                   Judging...
                 </div>
               )}
             </div>
-            
+
             <CardTitle className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-600">
-              🔥 shafu Roast 🔥 {ultraSavageMode && '💀'}
+              🔥{' '}
+              <a
+                href="https://x.com/shafu0x"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline cursor-pointer transition-all duration-300 hover:scale-105 inline-block"
+              >
+                shafu
+              </a>{' '}
+              Roast 🔥 {ultraSavageMode && '💀'}
             </CardTitle>
             <CardDescription className="text-lg text-gray-300">
               Submit your Solidity contracts for a ruthless code review
@@ -370,7 +397,23 @@ ${createRoastPrompt(contractName, contractContent)}`;
                   } ${severity.id === 'shafu' ? 'border-orange-500 text-orange-400' : ''}`}
                   disabled={severity.id === 'shafu' && !ultraSavageMode}
                 >
-                  {severity.label}
+                  {severity.id === 'shafu' ? (
+                    <>
+                      🌋{' '}
+                      <a
+                        href="https://x.com/shafu0x"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:underline cursor-pointer"
+                        onClick={e => e.stopPropagation()}
+                      >
+                        shafu
+                      </a>{' '}
+                      Mode
+                    </>
+                  ) : (
+                    severity.label
+                  )}
                 </Button>
               ))}
             </div>
@@ -504,24 +547,47 @@ ${createRoastPrompt(contractName, contractContent)}`;
             <CardContent className="text-center py-4 relative">
               {/* Judging shafu */}
               <div className="flex items-center justify-center gap-4 mb-2">
-                <img 
-                  src="/shafu.jpg" 
-                  alt="shafu judging"
-                  className="w-12 h-12 rounded-full border-2 border-yellow-400 animate-bounce"
-                  style={{ imageRendering: 'pixelated' }}
-                />
+                <a
+                  href="https://x.com/shafu0x"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src="/shafu.jpg"
+                    alt="shafu judging"
+                    className="w-12 h-12 rounded-full border-2 border-yellow-400 animate-bounce cursor-pointer hover:scale-110 transition-transform duration-300"
+                    style={{ imageRendering: 'pixelated' }}
+                  />
+                </a>
                 <div className="text-yellow-400 font-bold text-lg">
                   {currentRoastingMessage}
                 </div>
-                <img 
-                  src="/shafu.jpg" 
-                  alt="shafu judging"
-                  className="w-12 h-12 rounded-full border-2 border-yellow-400 animate-bounce"
-                  style={{ imageRendering: 'pixelated', animationDelay: '0.5s' }}
-                />
+                <a
+                  href="https://x.com/shafu0x"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src="/shafu.jpg"
+                    alt="shafu judging"
+                    className="w-12 h-12 rounded-full border-2 border-yellow-400 animate-bounce cursor-pointer hover:scale-110 transition-transform duration-300"
+                    style={{
+                      imageRendering: 'pixelated',
+                      animationDelay: '0.5s',
+                    }}
+                  />
+                </a>
               </div>
               <div className="text-yellow-300 text-sm">
-                shafu is personally reviewing your code... This won't end well.
+                <a
+                  href="https://x.com/shafu0x"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline cursor-pointer text-orange-400"
+                >
+                  shafu
+                </a>{' '}
+                is personally reviewing your code... This won't end well.
               </div>
             </CardContent>
           </Card>
@@ -612,27 +678,57 @@ ${createRoastPrompt(contractName, contractContent)}`;
                   {memeRating > 0 && (
                     <div className="text-sm text-center p-3 bg-orange-500/10 rounded border border-orange-500/20">
                       <div className="flex items-center justify-center gap-3 mb-2">
-                        <img 
-                          src="/shafu.jpg" 
-                          alt="shafu rating"
-                          className={`w-8 h-8 rounded-full border border-orange-400 ${
-                            memeRating >= 8 ? 'animate-bounce' : 
-                            memeRating <= 3 ? 'grayscale animate-pulse' : ''
-                          }`}
-                          style={{ imageRendering: 'pixelated' }}
-                        />
+                        <a
+                          href="https://x.com/shafu0x"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <img
+                            src="/shafu.jpg"
+                            alt="shafu rating"
+                            className={`w-8 h-8 rounded-full border border-orange-400 cursor-pointer hover:scale-110 transition-transform duration-300 ${
+                              memeRating >= 8
+                                ? 'animate-bounce'
+                                : memeRating <= 3
+                                  ? 'grayscale animate-pulse'
+                                  : ''
+                            }`}
+                            style={{ imageRendering: 'pixelated' }}
+                          />
+                        </a>
                         <div className="text-orange-400 font-bold">
-                          🔥 shafu Rating: {'🔥'.repeat(memeRating)} ({memeRating}/10)
+                          🔥{' '}
+                          <a
+                            href="https://x.com/shafu0x"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:underline cursor-pointer"
+                          >
+                            shafu
+                          </a>{' '}
+                          Rating: {'🔥'.repeat(memeRating)} ({memeRating}/10)
                         </div>
-                        <img 
-                          src="/shafu.jpg" 
-                          alt="shafu rating"
-                          className={`w-8 h-8 rounded-full border border-orange-400 ${
-                            memeRating >= 8 ? 'animate-bounce' : 
-                            memeRating <= 3 ? 'grayscale animate-pulse' : ''
-                          }`}
-                          style={{ imageRendering: 'pixelated', animationDelay: '0.2s' }}
-                        />
+                        <a
+                          href="https://x.com/shafu0x"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <img
+                            src="/shafu.jpg"
+                            alt="shafu rating"
+                            className={`w-8 h-8 rounded-full border border-orange-400 cursor-pointer hover:scale-110 transition-transform duration-300 ${
+                              memeRating >= 8
+                                ? 'animate-bounce'
+                                : memeRating <= 3
+                                  ? 'grayscale animate-pulse'
+                                  : ''
+                            }`}
+                            style={{
+                              imageRendering: 'pixelated',
+                              animationDelay: '0.2s',
+                            }}
+                          />
+                        </a>
                       </div>
                       <div className="text-yellow-300 text-xs">
                         {getMemeComment(memeRating)}
@@ -656,23 +752,34 @@ ${createRoastPrompt(contractName, contractContent)}`;
             <CardContent className="text-center py-8">
               <div className="text-gray-400 space-y-4">
                 <div className="flex items-center justify-center gap-2">
-                  <img 
-                    src="/shafu.jpg" 
-                    alt="shafu"
-                    className="w-6 h-6 rounded-full border border-gray-400 hover:border-orange-400 transition-all duration-300 hover:scale-125 cursor-pointer"
-                    style={{ imageRendering: 'pixelated' }}
-                    onClick={() => {
-                      // Random shafu easter egg!
-                      const messages = [
-                        '👋 Hello! I see you found me...',
-                        '🔥 Ready to roast some contracts?',
-                        '💀 Your code probably sucks',
-                        '🚀 Let\'s build secure contracts!',
-                        '😎 Nice pixel art, right?'
-                      ];
-                      alert(messages[Math.floor(Math.random() * messages.length)]);
+                  <a
+                    href="https://x.com/shafu0x"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={e => {
+                      // Random shafu easter egg on right click or ctrl+click
+                      if (e.ctrlKey || e.metaKey) {
+                        e.preventDefault();
+                        const messages = [
+                          '👋 Hello! I see you found me...',
+                          '🔥 Ready to roast some contracts?',
+                          '💀 Your code probably sucks',
+                          "🚀 Let's build secure contracts!",
+                          '😎 Nice pixel art, right?',
+                        ];
+                        alert(
+                          messages[Math.floor(Math.random() * messages.length)]
+                        );
+                      }
                     }}
-                  />
+                  >
+                    <img
+                      src="/shafu.jpg"
+                      alt="shafu"
+                      className="w-6 h-6 rounded-full border border-gray-400 hover:border-orange-400 transition-all duration-300 hover:scale-125 cursor-pointer"
+                      style={{ imageRendering: 'pixelated' }}
+                    />
+                  </a>
                   <div>
                     🎮 Pro tip: Try the Konami code for maximum destruction
                   </div>
@@ -680,13 +787,23 @@ ${createRoastPrompt(contractName, contractContent)}`;
                 <div className="text-xs">↑ ↑ ↓ ↓ ← → ← → B A</div>
                 <div className="text-xs mt-4 flex items-center justify-center gap-2">
                   <span>Built with 💀 by</span>
-                  <img 
-                    src="/shafu.jpg" 
-                    alt="shafu"
-                    className="w-4 h-4 rounded-full border border-orange-400 animate-pulse"
-                    style={{ imageRendering: 'pixelated' }}
-                  />
-                  <span>shafu for the Solidity community</span>
+                  <a
+                    href="https://x.com/shafu0x"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 hover:scale-105 transition-transform duration-300"
+                  >
+                    <img
+                      src="/shafu.jpg"
+                      alt="shafu"
+                      className="w-4 h-4 rounded-full border border-orange-400 animate-pulse cursor-pointer"
+                      style={{ imageRendering: 'pixelated' }}
+                    />
+                    <span className="hover:underline cursor-pointer text-orange-400">
+                      shafu
+                    </span>
+                  </a>
+                  <span>for the Solidity community</span>
                 </div>
               </div>
             </CardContent>

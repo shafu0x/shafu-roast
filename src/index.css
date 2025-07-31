@@ -242,7 +242,7 @@ code {
 }
 
 /* shafu hover effects */
-img[alt="shafu"]:hover {
+img[alt='shafu']:hover {
   filter: drop-shadow(0 0 10px #f97316);
   transform: scale(1.1);
 }
