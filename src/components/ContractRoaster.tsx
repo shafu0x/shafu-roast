@@ -288,7 +288,7 @@ ${createRoastPrompt(contractName, contractContent)}`;
         <Card className="w-full max-w-sm sm:max-w-md lg:max-w-lg border-orange-500/20 bg-black/40 backdrop-blur">
           <CardHeader className="text-center px-4 py-6 sm:px-6 sm:py-8">
             <CardTitle className="text-2xl sm:text-3xl lg:text-4xl font-bold text-cyan-400">
-              🔥 shafu Roast 🔥
+              shafu Roast
             </CardTitle>
             <CardDescription className="text-sm sm:text-base lg:text-lg text-gray-200 mt-2">
               Your contracts suck and I will tell you why
