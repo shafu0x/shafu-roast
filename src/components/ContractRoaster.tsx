@@ -453,7 +453,7 @@ ${createRoastPrompt(contractName, contractContent)}`;
         <Card className="border-purple-500/20 bg-black/40 backdrop-blur">
           <CardHeader className="px-4 py-4 sm:px-6 sm:py-6">
             <CardTitle className="text-cyan-400 text-lg sm:text-xl lg:text-2xl">
-              🎯 Destruction Level
+              Destruction Level
             </CardTitle>
             <CardDescription className="text-sm sm:text-base text-gray-200 mt-1">
               Choose your preferred level of digital violence
@@ -509,7 +509,7 @@ ${createRoastPrompt(contractName, contractContent)}`;
         <Card className="border-orange-500/20 bg-black/40 backdrop-blur">
           <CardHeader className="px-4 py-4 sm:px-6 sm:py-6">
             <CardTitle className="text-cyan-400 text-lg sm:text-xl lg:text-2xl">
-              🎯 Target Acquisition
+              Target Acquisition
             </CardTitle>
             <CardDescription className="text-sm sm:text-base text-gray-200 mt-1">
               Drop a GitHub link and watch your contract get absolutely
