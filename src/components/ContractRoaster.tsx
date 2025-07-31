@@ -293,16 +293,7 @@ ${createRoastPrompt(contractName, contractContent)}`;
         <Card className="w-full max-w-md">
           <CardHeader className="text-center">
             <CardTitle className="text-3xl font-bold">
-              🔥{' '}
-              <a
-                href="https://x.com/shafu0x"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:underline cursor-pointer transition-all duration-300 hover:scale-105 inline-block text-orange-400"
-              >
-                shafu
-              </a>{' '}
-              Roast 🔥
+              🔥 shafu Roast 🔥
             </CardTitle>
             <CardDescription>
               Your contracts suck and I will tell you why
@@ -326,23 +317,16 @@ ${createRoastPrompt(contractName, contractContent)}`;
           <CardHeader className="text-center relative">
             {/* shafu Avatar */}
             <div className="absolute top-4 right-4">
-              <a
-                href="https://x.com/shafu0x"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block hover:scale-110 transition-transform duration-300"
-              >
-                <img
-                  src="/shafu.jpg"
-                  alt="shafu"
-                  className={`w-16 h-16 rounded-full border-2 border-orange-400 pixelated transition-all duration-300 cursor-pointer ${
-                    shafuJudging
-                      ? 'animate-bounce scale-110 border-red-500'
-                      : ''
-                  } ${ultraSavageMode ? 'animate-spin border-red-600' : ''}`}
-                  style={{ imageRendering: 'pixelated' }}
-                />
-              </a>
+              <img
+                src="/shafu.jpg"
+                alt="shafu"
+                className={`w-16 h-16 rounded-full border-2 border-orange-400 pixelated transition-all duration-300 ${
+                  shafuJudging
+                    ? 'animate-bounce scale-110 border-red-500'
+                    : ''
+                } ${ultraSavageMode ? 'animate-spin border-red-600' : ''}`}
+                style={{ imageRendering: 'pixelated' }}
+              />
               {shafuJudging && (
                 <div className="absolute -top-8 -left-4 bg-black/80 text-orange-400 text-xs px-2 py-1 rounded animate-pulse">
                   Judging...
@@ -351,16 +335,7 @@ ${createRoastPrompt(contractName, contractContent)}`;
             </div>
 
             <CardTitle className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-600">
-              🔥{' '}
-              <a
-                href="https://x.com/shafu0x"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:underline cursor-pointer transition-all duration-300 hover:scale-105 inline-block"
-              >
-                shafu
-              </a>{' '}
-              Roast 🔥 {ultraSavageMode && '💀'}
+              🔥 shafu Roast 🔥 {ultraSavageMode && '💀'}
             </CardTitle>
             <CardDescription className="text-lg text-gray-300">
               Submit your Solidity contracts for a ruthless code review

@@ -4,58 +4,58 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
-    --radius: 0.5rem;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+    --background: 240 20% 8%;
+    --foreground: 180 40% 85%;
+    --card: 240 25% 12%;
+    --card-foreground: 180 40% 90%;
+    --popover: 240 25% 12%;
+    --popover-foreground: 180 40% 90%;
+    --primary: 180 100% 60%;
+    --primary-foreground: 240 20% 10%;
+    --secondary: 300 80% 60%;
+    --secondary-foreground: 240 20% 10%;
+    --muted: 240 20% 20%;
+    --muted-foreground: 180 30% 70%;
+    --accent: 60 90% 55%;
+    --accent-foreground: 240 20% 10%;
+    --destructive: 0 90% 60%;
+    --destructive-foreground: 240 20% 10%;
+    --border: 180 50% 40%;
+    --input: 240 25% 15%;
+    --ring: 180 100% 60%;
+    --radius: 0.25rem;
+    --chart-1: 180 100% 60%;
+    --chart-2: 300 80% 60%;
+    --chart-3: 60 90% 55%;
+    --chart-4: 120 100% 50%;
+    --chart-5: 0 90% 60%;
   }
 
   .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --background: 240 20% 8%;
+    --foreground: 180 40% 85%;
+    --card: 240 25% 12%;
+    --card-foreground: 180 40% 90%;
+    --popover: 240 25% 12%;
+    --popover-foreground: 180 40% 90%;
+    --primary: 180 100% 60%;
+    --primary-foreground: 240 20% 10%;
+    --secondary: 300 80% 60%;
+    --secondary-foreground: 240 20% 10%;
+    --muted: 240 20% 20%;
+    --muted-foreground: 180 30% 70%;
+    --accent: 60 90% 55%;
+    --accent-foreground: 240 20% 10%;
+    --destructive: 0 90% 60%;
+    --destructive-foreground: 240 20% 10%;
+    --border: 180 50% 40%;
+    --input: 240 25% 15%;
+    --ring: 180 100% 60%;
+    --chart-1: 180 100% 60%;
+    --chart-2: 300 80% 60%;
+    --chart-3: 60 90% 55%;
+    --chart-4: 120 100% 50%;
+    --chart-5: 0 90% 60%;
   }
 }
 
@@ -68,27 +68,160 @@
   }
 }
 
+@import url('https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&family=Orbitron:wght@400;700;900&display=swap');
+
 body {
   margin: 0;
-  font-family:
-    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-weight: 400;
+  line-height: 1.6;
 }
 
 code {
-  font-family:
-    source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: 'VT323', 'Courier New', monospace;
+  font-size: 1.2em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Press Start 2P', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-shadow: 
+    0 0 5px hsl(var(--primary) / 0.5),
+    0 0 10px hsl(var(--primary) / 0.3);
+  line-height: 1.5;
+}
+
+/* 🔥 CYBERPUNK GLOBAL STYLES */
+
+/* Scanline effect */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    transparent 50%,
+    rgba(0, 255, 255, 0.01) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 9999;
+  animation: scanlines 8s linear infinite;
+  opacity: 0.5;
+}
+
+@keyframes scanlines {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 8px;
+  }
+}
+
+/* Grid background pattern */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 20px,
+      rgba(0, 255, 255, 0.02) 20px,
+      rgba(0, 255, 255, 0.02) 21px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 20px,
+      rgba(0, 255, 255, 0.02) 20px,
+      rgba(0, 255, 255, 0.02) 21px
+    );
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.8;
+}
+
+/* Neon text utilities */
+.neon-text {
+  text-shadow: 
+    0 0 3px currentColor,
+    0 0 8px currentColor;
+}
+
+.neon-box {
+  box-shadow: 
+    0 0 5px hsl(var(--primary) / 0.5),
+    0 0 15px hsl(var(--primary) / 0.3),
+    inset 0 0 10px rgba(0, 255, 255, 0.05);
+  border: 1px solid hsl(var(--primary) / 0.6);
+}
+
+/* Glitch effect */
+@keyframes glitch {
+  0%, 100% {
+    text-shadow: 
+      0.05em 0 0 rgba(255, 0, 0, 0.75),
+      -0.05em -0.025em 0 rgba(0, 255, 0, 0.75),
+      0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  14% {
+    text-shadow: 
+      0.05em 0 0 rgba(255, 0, 0, 0.75),
+      -0.05em -0.025em 0 rgba(0, 255, 0, 0.75),
+      0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  15% {
+    text-shadow: 
+      -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
+      0.025em 0.025em 0 rgba(0, 255, 0, 0.75),
+      -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  49% {
+    text-shadow: 
+      -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
+      0.025em 0.025em 0 rgba(0, 255, 0, 0.75),
+      -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  50% {
+    text-shadow: 
+      0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
+      0.05em 0 0 rgba(0, 255, 0, 0.75),
+      0 -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  99% {
+    text-shadow: 
+      0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
+      0.05em 0 0 rgba(0, 255, 0, 0.75),
+      0 -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+}
+
+.glitch {
+  animation: glitch 1s linear infinite;
 }
 
 /* 🎭 COMEDY ANIMATIONS */
 
-/* Streaming cursor animation */
+/* Streaming cursor animation - cyberpunk style */
 @keyframes blink {
   0%,
   50% {
     opacity: 1;
+    color: hsl(var(--primary));
+    text-shadow: 0 0 10px hsl(var(--primary));
   }
   51%,
   100% {
@@ -97,7 +230,8 @@ code {
 }
 
 .typing-cursor {
-  animation: blink 1s infinite;
+  animation: blink 0.5s infinite;
+  font-weight: bold;
 }
 
 /* Shake animation for errors */
@@ -157,21 +291,29 @@ code {
   animation: slideUp 0.6s ease-out;
 }
 
-/* Glow effect for ultra savage mode */
+/* Glow effect for ultra savage mode - cyberpunk style */
 @keyframes glow {
   0%,
   100% {
-    box-shadow: 0 0 5px #ef4444;
+    box-shadow: 
+      0 0 5px hsl(var(--destructive)),
+      0 0 10px hsl(var(--destructive)),
+      inset 0 0 10px rgba(255, 0, 0, 0.2);
+    border-color: hsl(var(--destructive));
   }
   50% {
     box-shadow:
-      0 0 20px #ef4444,
-      0 0 30px #ef4444;
+      0 0 20px hsl(var(--destructive)),
+      0 0 40px hsl(var(--destructive)),
+      0 0 60px hsl(var(--destructive)),
+      inset 0 0 20px rgba(255, 0, 0, 0.4);
+    border-color: hsl(var(--accent));
   }
 }
 
 .animate-glow {
-  animation: glow 2s ease-in-out infinite;
+  animation: glow 1.5s ease-in-out infinite;
+  border: 2px solid hsl(var(--destructive));
 }
 
 /* Fire flicker effect */
