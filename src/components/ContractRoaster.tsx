@@ -257,7 +257,6 @@ export function ContractRoaster() {
     setContractContent('');
     setContractName('');
     setRoast('');
-    setRating(null);
 
     // 🎯 Start with random loading message and rotate every 2 seconds
     const startMessage = getRandomLoadingMessage();
@@ -429,7 +428,7 @@ ${createRoastPrompt(contractName, contractContent)}`;
 
             {/* Title - responsive text size */}
             <CardTitle className="text-2xl sm:text-3xl lg:text-4xl font-bold text-cyan-400 pr-16 sm:pr-20">
-              🔥 shafu Roast 🔥 {ultraSavageMode && '💀'}
+              shafu Roast {ultraSavageMode && '💀'}
             </CardTitle>
 
             {/* Description - responsive and better mobile layout */}
@@ -768,20 +767,7 @@ ${createRoastPrompt(contractName, contractContent)}`;
                 {/* Card Content */}
                 <div className="relative z-10">
                   {/* Card Header with Repo Info */}
-                  <div className="flex items-center gap-4 mb-6 pb-2 relative">
-                    {/* Rating in top right */}
-                    {rating !== null && (
-                      <div
-                        className={`absolute top-0 right-0 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg ${
-                          rating === 10
-                            ? 'bg-gradient-to-r from-green-500 to-emerald-500'
-                            : 'bg-gradient-to-r from-red-500 to-orange-500'
-                        }`}
-                      >
-                        {rating}/10
-                      </div>
-                    )}
-
+                  <div className="flex items-center gap-4 mb-6 pb-2">
                     {/* GitHub Repo Logo/Avatar */}
                     <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-lg bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center text-white font-bold text-lg sm:text-xl shadow-lg flex-shrink-0">
                       {contractName.charAt(0).toUpperCase()}
