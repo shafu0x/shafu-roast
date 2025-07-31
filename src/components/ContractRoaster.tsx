@@ -21,7 +21,6 @@ import { Alert, AlertDescription } from './ui/alert';
 
 import { fetchContractFromGithub } from '../utils/githubUtils';
 import { ROASTER_SYSTEM_PROMPT, createRoastPrompt } from '../constants/prompts';
-import { EXAMPLE_CONTRACTS } from '../constants/config';
 
 export function ContractRoaster() {
   const { isAuthenticated } = useEcho();
@@ -61,8 +60,11 @@ export function ContractRoaster() {
     if (!contractContent) return;
 
     setLoading(true);
+    setRoast(''); // Clear previous roast
+    setError('');
+
     try {
-      const response = await openai.chat.completions.create({
+      const stream = await openai.chat.completions.create({
         model: 'gpt-4o-mini',
         messages: [
           {
@@ -75,9 +77,15 @@ export function ContractRoaster() {
           },
         ],
         max_tokens: 1500,
+        stream: true,
       });
 
-      setRoast(response.choices[0].message.content || '');
+      for await (const chunk of stream) {
+        const content = chunk.choices[0]?.delta?.content || '';
+        if (content) {
+          setRoast(prev => prev + content);
+        }
+      }
     } catch (err: any) {
       setError('Failed to generate roast: ' + err.message);
     } finally {
@@ -148,26 +156,6 @@ export function ContractRoaster() {
               </Button>
             </div>
 
-            {/* Example contracts */}
-            <div className="space-y-2">
-              <p className="text-sm text-gray-400">
-                Try these example contracts:
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {EXAMPLE_CONTRACTS.map((url, index) => (
-                  <Button
-                    key={index}
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setGithubUrl(url)}
-                    className="text-xs bg-gray-800/50 border-gray-600 hover:bg-gray-700/50"
-                  >
-                    {url.split('/').pop()?.replace('.sol', '')}
-                  </Button>
-                ))}
-              </div>
-            </div>
-
             {error && (
               <Alert className="border-red-500/50 bg-red-500/10">
                 <AlertDescription className="text-red-400">
@@ -199,7 +187,7 @@ export function ContractRoaster() {
                   disabled={loading}
                   className="bg-red-600 hover:bg-red-700"
                 >
-                  {loading ? 'Roasting...' : '🔥 ROAST IT! 🔥'}
+                  {loading ? '🔥 Streaming...' : '🔥 ROAST IT! 🔥'}
                 </Button>
               </CardTitle>
             </CardHeader>
