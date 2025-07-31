@@ -88,6 +88,7 @@ export function ContractRoaster() {
   const [contractContent, setContractContent] = useState('');
   const [contractName, setContractName] = useState('');
   const [roast, setRoast] = useState('');
+  const [rating, setRating] = useState<number | null>(null);
   const [fetchingContract, setFetchingContract] = useState(false);
   const [roasting, setRoasting] = useState(false);
   const [error, setError] = useState('');
@@ -256,6 +257,7 @@ export function ContractRoaster() {
     setContractContent('');
     setContractName('');
     setRoast('');
+    setRating(null);
 
     // 🎯 Start with random loading message and rotate every 2 seconds
     const startMessage = getRandomLoadingMessage();
@@ -307,11 +309,13 @@ export function ContractRoaster() {
       setRoast(
         'This contract is written by shafu and therefore perfect by definition'
       );
+      setRating(10);
       return;
     }
 
     setRoasting(true);
     setRoast(''); // Clear previous roast
+    setRating(null); // Clear previous rating
     setError('');
 
     // 🔥 Start rotating roasting messages
@@ -364,6 +368,10 @@ ${createRoastPrompt(contractName, contractContent)}`;
           await new Promise(resolve => setTimeout(resolve, 20));
         }
       }
+
+      // Generate random rating (1-8) for normal contracts
+      const randomRating = Math.floor(Math.random() * 5) + 1;
+      setRating(randomRating);
     } catch (err: any) {
       setError(getSavageError('Failed to generate roast: ' + err.message));
     } finally {
@@ -760,7 +768,20 @@ ${createRoastPrompt(contractName, contractContent)}`;
                 {/* Card Content */}
                 <div className="relative z-10">
                   {/* Card Header with Repo Info */}
-                  <div className="flex items-center gap-4 mb-6 pb-2">
+                  <div className="flex items-center gap-4 mb-6 pb-2 relative">
+                    {/* Rating in top right */}
+                    {rating !== null && (
+                      <div
+                        className={`absolute top-0 right-0 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg ${
+                          rating === 10
+                            ? 'bg-gradient-to-r from-green-500 to-emerald-500'
+                            : 'bg-gradient-to-r from-red-500 to-orange-500'
+                        }`}
+                      >
+                        {rating}/10
+                      </div>
+                    )}
+
                     {/* GitHub Repo Logo/Avatar */}
                     <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-lg bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center text-white font-bold text-lg sm:text-xl shadow-lg flex-shrink-0">
                       {contractName.charAt(0).toUpperCase()}
