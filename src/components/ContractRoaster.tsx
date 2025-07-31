@@ -1,11 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { flushSync } from 'react-dom';
-import {
-  useEcho,
-  useEchoOpenAI,
-  EchoSignIn,
-  EchoTokenPurchase,
-} from '@zdql/echo-react-sdk';
+import { useEcho, useEchoOpenAI, EchoSignIn } from '@zdql/echo-react-sdk';
 
 import { Button } from './ui/button';
 import { Input } from './ui/input';
