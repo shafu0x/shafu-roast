@@ -51,13 +51,13 @@ const ROAST_SEVERITIES = [
     prompt: 'Be constructive and kind',
   },
   {
-    id: 'medium',
-    label: '😤 Medium',
+    id: 'easy',
+    label: '😊 Easy',
     prompt: 'Be funny but helpful',
   },
   {
-    id: 'spicy',
-    label: '🔥 Well Done',
+    id: 'hard',
+    label: '🔥 Hard',
     prompt: 'Be savage and hilarious',
   },
   {
@@ -653,8 +653,8 @@ ${createRoastPrompt(contractName, contractContent)}`;
                     ) : (
                       <span className="text-xs sm:text-sm">
                         {roastSeverity.id === 'gentle' && '🥺 Please Review'}
-                        {roastSeverity.id === 'medium' && '😤 Roast This'}
-                        {roastSeverity.id === 'spicy' && '🔥 DESTROY IT'}
+                        {roastSeverity.id === 'easy' && '😤 Roast This'}
+                        {roastSeverity.id === 'hard' && '🔥 DESTROY IT'}
                         {roastSeverity.id === 'nuclear' && '💀 ANNIHILATE'}
                         {roastSeverity.id === 'shafu' && '🌋 OBLITERATE'}
                       </span>
